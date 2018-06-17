@@ -1,0 +1,114 @@
+﻿@model GOES.PRODUCTOS_PROVEEDOR
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PRODUCTOS_PROVEEDOR</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PROD_PROVEEDOR_NOMBRE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PROD_PROVEEDOR_NOMBRE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PROD_PROVEEDOR_MARCA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PROD_PROVEEDOR_MARCA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PROD_PROVEEDOR_MODELO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PROD_PROVEEDOR_MODELO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PROD_PROVEEDOR_ANIO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PROD_PROVEEDOR_ANIO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PROD_PROVEEDOR_BTU)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PROD_PROVEEDOR_BTU)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PROD_PROVEEDOR_POTENCIA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PROD_PROVEEDOR_POTENCIA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PROD_PROVEEDOR_COLOR)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PROD_PROVEEDOR_COLOR)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PROD_PROVEEDOR_EXISTENCIAS)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PROD_PROVEEDOR_EXISTENCIAS)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PROD_PROVEEDOR_DESCRIPCION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PROD_PROVEEDOR_DESCRIPCION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PROD_PROVEEDOR_VOLTAJE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PROD_PROVEEDOR_VOLTAJE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PROD_PROVEEDOR_AREA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PROD_PROVEEDOR_AREA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PROVEEDORES.PROVEEDOR_EMPRESA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PROVEEDORES.PROVEEDOR_EMPRESA)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PROD_PROVEEDOR_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

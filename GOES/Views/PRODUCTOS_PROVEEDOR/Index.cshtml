@@ -1,0 +1,99 @@
+﻿@model IEnumerable<GOES.PRODUCTOS_PROVEEDOR>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PROD_PROVEEDOR_NOMBRE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PROD_PROVEEDOR_MARCA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PROD_PROVEEDOR_MODELO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PROD_PROVEEDOR_ANIO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PROD_PROVEEDOR_BTU)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PROD_PROVEEDOR_POTENCIA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PROD_PROVEEDOR_COLOR)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PROD_PROVEEDOR_EXISTENCIAS)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PROD_PROVEEDOR_DESCRIPCION)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PROD_PROVEEDOR_VOLTAJE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PROD_PROVEEDOR_AREA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PROVEEDORES.PROVEEDOR_EMPRESA)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PROD_PROVEEDOR_NOMBRE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PROD_PROVEEDOR_MARCA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PROD_PROVEEDOR_MODELO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PROD_PROVEEDOR_ANIO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PROD_PROVEEDOR_BTU)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PROD_PROVEEDOR_POTENCIA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PROD_PROVEEDOR_COLOR)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PROD_PROVEEDOR_EXISTENCIAS)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PROD_PROVEEDOR_DESCRIPCION)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PROD_PROVEEDOR_VOLTAJE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PROD_PROVEEDOR_AREA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PROVEEDORES.PROVEEDOR_EMPRESA)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.PROD_PROVEEDOR_ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.PROD_PROVEEDOR_ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.PROD_PROVEEDOR_ID })
+        </td>
+    </tr>
+}
+
+</table>

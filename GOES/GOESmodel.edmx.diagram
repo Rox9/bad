@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="72ab97d70f054e78a72afeab911adf97" Name="Diagram1">
+        <EntityTypeShape EntityType="BDLUPITAModel.ALERTAS" Width="1.5" PointX="12" PointY="35.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDLUPITAModel.APROBADOS" Width="1.5" PointX="12" PointY="29.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDLUPITAModel.BITACORA" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDLUPITAModel.COMPRAS" Width="1.5" PointX="7.5" PointY="19.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDLUPITAModel.CONTRATOS" Width="1.5" PointX="9.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDLUPITAModel.DEPARTAMENTOS" Width="1.5" PointX="0.75" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDLUPITAModel.DEPARTAMENTOS_INSTITUCION" Width="1.5" PointX="7.5" PointY="31.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDLUPITAModel.DETALLE_COMPRAS" Width="1.5" PointX="9.75" PointY="24.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDLUPITAModel.DETALLE_INSTALACION" Width="1.5" PointX="15" PointY="24.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDLUPITAModel.DETALLE_MANTENIMIENTO" Width="1.5" PointX="18" PointY="27.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDLUPITAModel.DETALLE_SOLICITUD" Width="1.5" PointX="15" PointY="32.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDLUPITAModel.DOCUMENTOS" Width="1.5" PointX="12" PointY="38.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDLUPITAModel.EQUIPOS" Width="1.5" PointX="9.75" PointY="36" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDLUPITAModel.INSTALACIONES" Width="1.5" PointX="12.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDLUPITAModel.INSTITUCIONES" Width="1.5" PointX="5.25" PointY="19.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDLUPITAModel.LICITACIONES" Width="1.5" PointX="12" PointY="41.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDLUPITAModel.MANTENIMIENTOS" Width="1.5" PointX="15.75" PointY="17.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDLUPITAModel.MUNICIPIOS" Width="1.5" PointX="3" PointY="20.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDLUPITAModel.OFERTAS" Width="1.5" PointX="15.25" PointY="28.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDLUPITAModel.PANTALLAS" Width="1.5" PointX="10.5" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDLUPITAModel.PERMISOS" Width="1.5" PointX="12.75" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDLUPITAModel.PRODUCTOS_INSTITUCION" Width="1.5" PointX="7.5" PointY="34.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDLUPITAModel.PRODUCTOS_PROVEEDOR" Width="1.5" PointX="12.75" PointY="24.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDLUPITAModel.PROVEEDORES" Width="1.5" PointX="10.5" PointY="19.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDLUPITAModel.ROLES" Width="1.5" PointX="10.5" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDLUPITAModel.SOLICITUDES" Width="1.5" PointX="9.75" PointY="30.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDLUPITAModel.sysdiagrams" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDLUPITAModel.TABLA_MENSAJE" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDLUPITAModel.TIPO_MANTENIMIENTOS" Width="1.5" PointX="13.5" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDLUPITAModel.TIPO_SOLICITUDES" Width="1.5" PointX="7.5" PointY="28.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDLUPITAModel.USUARIOS" Width="1.5" PointX="12.75" PointY="19.875" IsExpanded="true" />
+        <AssociationConnector Association="BDLUPITAModel.FK_ALERTAS_R7_EQUIPOS" ManuallyRouted="false" />
+        <AssociationConnector Association="BDLUPITAModel.FK_APROBADO_R28_SOLICITU" ManuallyRouted="false" />
+        <AssociationConnector Association="BDLUPITAModel.FK_COMPRAS_R15_PROVEEDO" ManuallyRouted="false" />
+        <AssociationConnector Association="BDLUPITAModel.FK_COMPRAS_R26_INSTITUC" ManuallyRouted="false" />
+        <AssociationConnector Association="BDLUPITAModel.FK_CONTRATO_R24_COMPRAS" ManuallyRouted="false" />
+        <AssociationConnector Association="BDLUPITAModel.FK_DETALLE__R25_COMPRAS" ManuallyRouted="false" />
+        <AssociationConnector Association="BDLUPITAModel.FK_EQUIPOS_R35_COMPRAS" ManuallyRouted="false" />
+        <AssociationConnector Association="BDLUPITAModel.FK_INSTALAC_R23_CONTRATO" ManuallyRouted="false" />
+        <AssociationConnector Association="BDLUPITAModel.FK_MANTENIM_R20_CONTRATO" ManuallyRouted="false" />
+        <AssociationConnector Association="BDLUPITAModel.FK_MUNICIPI_R4_DEPARTAM" ManuallyRouted="false" />
+        <AssociationConnector Association="BDLUPITAModel.FK_DEPARTAM_R10_INSTITUC" ManuallyRouted="false" />
+        <AssociationConnector Association="BDLUPITAModel.FK_SOLICITU_R32_DEPARTAM" ManuallyRouted="false" />
+        <AssociationConnector Association="BDLUPITAModel.FK_DETALLE__R21_INSTALAC" ManuallyRouted="false" />
+        <AssociationConnector Association="BDLUPITAModel.FK_DETALLE__R22_EQUIPOS" ManuallyRouted="false" />
+        <AssociationConnector Association="BDLUPITAModel.FK_DETALLE__R18_MANTENIM" ManuallyRouted="false" />
+        <AssociationConnector Association="BDLUPITAModel.FK_DETALLE__R19_EQUIPOS" ManuallyRouted="false" />
+        <AssociationConnector Association="BDLUPITAModel.FK_DETALLE__R31_SOLICITU" ManuallyRouted="false" />
+        <AssociationConnector Association="BDLUPITAModel.FK_DETALLE__R33_PRODUCTO" ManuallyRouted="false" />
+        <AssociationConnector Association="BDLUPITAModel.FK_DOCUMENT_R40_EQUIPOS" ManuallyRouted="false" />
+        <AssociationConnector Association="BDLUPITAModel.FK_INSTALAC_R13_PROVEEDO" ManuallyRouted="false" />
+        <AssociationConnector Association="BDLUPITAModel.FK_INSTITUC_R5_MUNICIPI" ManuallyRouted="false" />
+        <AssociationConnector Association="BDLUPITAModel.FK_PRODUCTO_R41_INSTITUC" ManuallyRouted="false" />
+        <AssociationConnector Association="BDLUPITAModel.FK_USUARIOS_R11_INSTITUC" ManuallyRouted="false" />
+        <AssociationConnector Association="BDLUPITAModel.FK_LICITACI_R29_SOLICITU" ManuallyRouted="false" />
+        <AssociationConnector Association="BDLUPITAModel.FK_OFERTAS_R27_LICITACI" ManuallyRouted="false" />
+        <AssociationConnector Association="BDLUPITAModel.FK_MANTENIM_R12_TIPO_MAN" ManuallyRouted="false" />
+        <AssociationConnector Association="BDLUPITAModel.FK_MANTENIM_R6_PROVEEDO" ManuallyRouted="false" />
+        <AssociationConnector Association="BDLUPITAModel.FK_PROVEEDO_R14_MUNICIPI" ManuallyRouted="false" />
+        <AssociationConnector Association="BDLUPITAModel.FK_OFERTAS_R17_PROVEEDO" ManuallyRouted="false" />
+        <AssociationConnector Association="BDLUPITAModel.FK_PERMISOS_R1_PANTALLA" ManuallyRouted="false" />
+        <AssociationConnector Association="BDLUPITAModel.FK_PERMISOS_R2_ROLES" ManuallyRouted="false" />
+        <AssociationConnector Association="BDLUPITAModel.FK_PRODUCTO_R16_PROVEEDO" ManuallyRouted="false" />
+        <AssociationConnector Association="BDLUPITAModel.FK_USUARIOS_R8_PROVEEDO" ManuallyRouted="false" />
+        <AssociationConnector Association="BDLUPITAModel.FK_USUARIOS_R3_ROLES" ManuallyRouted="false" />
+        <AssociationConnector Association="BDLUPITAModel.FK_SOLICITU_R30_TIPO_SOL" ManuallyRouted="false" />
+        <AssociationConnector Association="BDLUPITAModel.CONDICIONES" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

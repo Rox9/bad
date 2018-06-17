@@ -1,0 +1,51 @@
+﻿@model IEnumerable<GOES.OFERTAS>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.OFERTA_PRECIO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OFERTA_DESCRIPCION)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LICITACIONES.LICITACION_DESCRIPCION)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PROVEEDORES.PROVEEDOR_EMPRESA)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.OFERTA_PRECIO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OFERTA_DESCRIPCION)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LICITACIONES.LICITACION_DESCRIPCION)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PROVEEDORES.PROVEEDOR_EMPRESA)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.OFERTA_ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.OFERTA_ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.OFERTA_ID })
+        </td>
+    </tr>
+}
+
+</table>

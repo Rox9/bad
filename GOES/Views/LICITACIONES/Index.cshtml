@@ -1,0 +1,63 @@
+﻿@model IEnumerable<GOES.LICITACIONES>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.LICITACION_NUMERO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LICITACION_ANIO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LICITACION_INICIO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LICITACION_FINALIZACION)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LICITACION_DESCRIPCION)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SOLICITUDES.SOLICITUD_RESPONSABLE)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.LICITACION_NUMERO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LICITACION_ANIO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LICITACION_INICIO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LICITACION_FINALIZACION)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LICITACION_DESCRIPCION)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SOLICITUDES.SOLICITUD_RESPONSABLE)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.LICITACION_ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.LICITACION_ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.LICITACION_ID })
+        </td>
+    </tr>
+}
+
+</table>

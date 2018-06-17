@@ -1,0 +1,50 @@
+﻿@model GOES.OFERTAS
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>OFERTAS</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.OFERTA_PRECIO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OFERTA_PRECIO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OFERTA_DESCRIPCION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OFERTA_DESCRIPCION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LICITACIONES.LICITACION_DESCRIPCION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LICITACIONES.LICITACION_DESCRIPCION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PROVEEDORES.PROVEEDOR_EMPRESA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PROVEEDORES.PROVEEDOR_EMPRESA)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.OFERTA_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

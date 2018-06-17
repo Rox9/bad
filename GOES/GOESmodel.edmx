@@ -1,0 +1,2399 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BDLUPITAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ALERTAS">
+          <Key>
+            <PropertyRef Name="ALERTA_ID" />
+          </Key>
+          <Property Name="ALERTA_ID" Type="int" Nullable="false" />
+          <Property Name="EQUIPO_ID" Type="int" Nullable="false" />
+          <Property Name="ALERTA_FECHA" Type="datetime" Nullable="false" />
+          <Property Name="ALERTA_MENSAJE" Type="varchar" MaxLength="200" />
+          <Property Name="ALERTA_ESTADO" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="APROBADOS">
+          <Key>
+            <PropertyRef Name="APROBADO_ID" />
+          </Key>
+          <Property Name="APROBADO_ID" Type="int" Nullable="false" />
+          <Property Name="SOLICITUD_ID" Type="int" Nullable="false" />
+          <Property Name="APROBADO_FECHA" Type="datetime" Nullable="false" />
+          <Property Name="APROBADO_RESPONSABLE" Type="varchar" MaxLength="75" Nullable="false" />
+          <Property Name="APROBADO_OBSERVACIONES" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="BITACORA">
+          <Key>
+            <PropertyRef Name="BITACORA_ID" />
+          </Key>
+          <Property Name="BITACORA_ID" Type="int" Nullable="false" />
+          <Property Name="BITACORA_USUARIO" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="BITACORA_FECHA" Type="datetime" Nullable="false" />
+          <Property Name="BITACORA_MOVIMIENTO" Type="varchar" MaxLength="400" Nullable="false" />
+        </EntityType>
+        <EntityType Name="COMPRAS">
+          <Key>
+            <PropertyRef Name="COMPRA_ID" />
+          </Key>
+          <Property Name="COMPRA_ID" Type="int" Nullable="false" />
+          <Property Name="INSTITUCION_ID" Type="int" Nullable="false" />
+          <Property Name="PROVEEDOR_ID" Type="int" />
+          <Property Name="COMPRA_FACTURA" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="COMPRA_FECHA" Type="datetime" Nullable="false" />
+          <Property Name="COMPRA_VENDEDOR" Type="varchar" MaxLength="75" />
+          <Property Name="COMPRA_SOLICITUD_CODIGO" Type="int" />
+          <Property Name="COMPRA_RESPONSABLE" Type="varchar" MaxLength="75" />
+        </EntityType>
+        <EntityType Name="CONDICIONES">
+          <Key>
+            <PropertyRef Name="PROVEEDOR_ID" />
+            <PropertyRef Name="INSTITUCION_ID" />
+          </Key>
+          <Property Name="PROVEEDOR_ID" Type="int" Nullable="false" />
+          <Property Name="INSTITUCION_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CONTRATOS">
+          <Key>
+            <PropertyRef Name="CONTRATO_ID" />
+          </Key>
+          <Property Name="CONTRATO_ID" Type="int" Nullable="false" />
+          <Property Name="COMPRA_ID" Type="int" Nullable="false" />
+          <Property Name="CONTRATO_NUMERO" Type="varchar" MaxLength="20" />
+          <Property Name="CONTRATO_FECHA" Type="datetime" Nullable="false" />
+          <Property Name="CONTRATO_RESP_UACI" Type="varchar" MaxLength="75" Nullable="false" />
+          <Property Name="CONTRATO_RESP_PROVEEDOR" Type="varchar" MaxLength="75" Nullable="false" />
+          <Property Name="CONTRATO_RESP_DEPTO" Type="varchar" MaxLength="75" Nullable="false" />
+          <Property Name="CONTRATO_OBSERVACION" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="DEPARTAMENTOS">
+          <Key>
+            <PropertyRef Name="DEPTO_ID" />
+          </Key>
+          <Property Name="DEPTO_ID" Type="int" Nullable="false" />
+          <Property Name="DEPTO_NOMBRE" Type="varchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DEPARTAMENTOS_INSTITUCION">
+          <Key>
+            <PropertyRef Name="DEPTO_INSTITUCION_ID" />
+          </Key>
+          <Property Name="DEPTO_INSTITUCION_ID" Type="int" Nullable="false" />
+          <Property Name="INSTITUCION_ID" Type="int" Nullable="false" />
+          <Property Name="DEPTO_INSTITUCION_NOMBRE" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="DEPTO_INSTITUCION_JEFE" Type="varchar" MaxLength="75" Nullable="false" />
+          <Property Name="DEPTO_INSTITUCION_TELEFONO" Type="varchar" MaxLength="10" />
+          <Property Name="DEPTO_INSTITUCION_DESCRIPCION" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="DETALLE_COMPRAS">
+          <Key>
+            <PropertyRef Name="DET_COMPRA_ID" />
+          </Key>
+          <Property Name="DET_COMPRA_ID" Type="int" Nullable="false" />
+          <Property Name="COMPRA_ID" Type="int" Nullable="false" />
+          <Property Name="DET_COMPRA_CANTIDAD" Type="int" Nullable="false" />
+          <Property Name="DET_COMPRA_DESCRIPCION" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="DET_COMPRA_PRECIO" Type="real" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DETALLE_INSTALACION">
+          <Key>
+            <PropertyRef Name="DET_INSTALACION_ID" />
+          </Key>
+          <Property Name="DET_INSTALACION_ID" Type="int" Nullable="false" />
+          <Property Name="INSTALACION_ID" Type="int" Nullable="false" />
+          <Property Name="EQUIPO_ID" Type="int" Nullable="false" />
+          <Property Name="DET_INSTALACION_ESTADO_INICIAL" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="DET_INSTALACION_ESTADO_FINAL" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="DET_INSTALACION_DESCRIPCION" Type="varchar" MaxLength="200" />
+          <Property Name="DET_INSTALACION_AUTORIZADO_POR" Type="varchar" MaxLength="75" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DETALLE_MANTENIMIENTO">
+          <Key>
+            <PropertyRef Name="DET_MANTO_ID" />
+          </Key>
+          <Property Name="DET_MANTO_ID" Type="int" Nullable="false" />
+          <Property Name="MANTO_ID" Type="int" Nullable="false" />
+          <Property Name="EQUIPO_ID" Type="int" Nullable="false" />
+          <Property Name="DET_MANTO_ESTADO_INICIAL" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="DET_MANTO_ESTADO_FINAL" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="DET_MANTO_DESCRIPCION" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="DETALLE_SOLICITUD">
+          <Key>
+            <PropertyRef Name="DET_SOLICITUD_ID" />
+          </Key>
+          <Property Name="DET_SOLICITUD_ID" Type="int" Nullable="false" />
+          <Property Name="PROD_INSTITUCION_ID" Type="int" Nullable="false" />
+          <Property Name="SOLICITUD_ID" Type="int" Nullable="false" />
+          <Property Name="DET_SOLICITUD_CANTIDAD" Type="int" Nullable="false" />
+          <Property Name="DET_SOLICITUD_DESCRIPCION" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DOCUMENTOS">
+          <Key>
+            <PropertyRef Name="DOCU_ID" />
+          </Key>
+          <Property Name="DOCU_ID" Type="int" Nullable="false" />
+          <Property Name="EQUIPO_ID" Type="int" Nullable="false" />
+          <Property Name="DOCU_NOMBRE" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DOCU_URL" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EQUIPOS">
+          <Key>
+            <PropertyRef Name="EQUIPO_ID" />
+          </Key>
+          <Property Name="EQUIPO_ID" Type="int" Nullable="false" />
+          <Property Name="COMPRA_ID" Type="int" Nullable="false" />
+          <Property Name="EQUIPO_NOMBRE" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="EQUIPO_MARCA" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="EQUIPO_MODELO" Type="varchar" MaxLength="50" />
+          <Property Name="EQUIPO_FECHA_COMPRA" Type="datetime" Nullable="false" />
+          <Property Name="EQUIPO_ANIO_FABRICACION" Type="int" />
+          <Property Name="EQUIPO_BTU" Type="real" />
+          <Property Name="EQUIPO_POTENCIA" Type="real" />
+          <Property Name="EQUIPO_MANTENIMIENTO" Type="datetime" />
+          <Property Name="EQUIPO_ESTADO" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="INSTALACIONES">
+          <Key>
+            <PropertyRef Name="INSTALACION_ID" />
+          </Key>
+          <Property Name="INSTALACION_ID" Type="int" Nullable="false" />
+          <Property Name="CONTRATO_ID" Type="int" Nullable="false" />
+          <Property Name="PROVEEDOR_ID" Type="int" Nullable="false" />
+          <Property Name="INSTALACION_INICIO" Type="datetime" Nullable="false" />
+          <Property Name="INSTALACION_FINALIZACION" Type="datetime" Nullable="false" />
+          <Property Name="INSTALACION_RESPONSABLE" Type="varchar" MaxLength="75" Nullable="false" />
+          <Property Name="INSTALACION_DESCRIPCION" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="INSTITUCIONES">
+          <Key>
+            <PropertyRef Name="INSTITUCION_ID" />
+          </Key>
+          <Property Name="INSTITUCION_ID" Type="int" Nullable="false" />
+          <Property Name="MUNICIPIO_ID" Type="int" Nullable="false" />
+          <Property Name="INSTITUCION_NOMBRE" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="INSTITUCION_ENCARGADO" Type="varchar" MaxLength="75" Nullable="false" />
+          <Property Name="INSTITUCION_TELEFONO" Type="varchar" MaxLength="10" />
+          <Property Name="INSTITUCION_DIRECCION" Type="varchar" MaxLength="500" />
+          <Property Name="INSTITUCION_DESCRIPCION" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="LICITACIONES">
+          <Key>
+            <PropertyRef Name="LICITACION_ID" />
+          </Key>
+          <Property Name="LICITACION_ID" Type="int" Nullable="false" />
+          <Property Name="SOLICITUD_ID" Type="int" Nullable="false" />
+          <Property Name="LICITACION_NUMERO" Type="int" Nullable="false" />
+          <Property Name="LICITACION_ANIO" Type="int" Nullable="false" />
+          <Property Name="LICITACION_INICIO" Type="datetime" Nullable="false" />
+          <Property Name="LICITACION_FINALIZACION" Type="datetime" Nullable="false" />
+          <Property Name="LICITACION_DESCRIPCION" Type="varchar" MaxLength="500" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MANTENIMIENTOS">
+          <Key>
+            <PropertyRef Name="MANTO_ID" />
+          </Key>
+          <Property Name="MANTO_ID" Type="int" Nullable="false" />
+          <Property Name="TIPO_MANTO_ID" Type="int" Nullable="false" />
+          <Property Name="CONTRATO_ID" Type="int" Nullable="false" />
+          <Property Name="PROVEEDOR_ID" Type="int" Nullable="false" />
+          <Property Name="MANTO_INICIO" Type="datetime" Nullable="false" />
+          <Property Name="MANTO_FINALIZACION" Type="datetime" Nullable="false" />
+          <Property Name="MANTO_RESPONSABLE" Type="varchar" MaxLength="75" Nullable="false" />
+          <Property Name="MANTO_DESCRIPCION" Type="varchar" MaxLength="500" />
+          <Property Name="MANTO_AUTORIZADO_POR" Type="varchar" MaxLength="75" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MUNICIPIOS">
+          <Key>
+            <PropertyRef Name="MUNICIPIO_ID" />
+          </Key>
+          <Property Name="MUNICIPIO_ID" Type="int" Nullable="false" />
+          <Property Name="DEPTO_ID" Type="int" Nullable="false" />
+          <Property Name="MUNICIPIO_NOMBRE" Type="varchar" MaxLength="40" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OFERTAS">
+          <Key>
+            <PropertyRef Name="OFERTA_ID" />
+          </Key>
+          <Property Name="OFERTA_ID" Type="int" Nullable="false" />
+          <Property Name="LICITACION_ID" Type="int" Nullable="false" />
+          <Property Name="PROVEEDOR_ID" Type="int" Nullable="false" />
+          <Property Name="OFERTA_PRECIO" Type="real" Nullable="false" />
+          <Property Name="OFERTA_DESCRIPCION" Type="varchar" MaxLength="500" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PANTALLAS">
+          <Key>
+            <PropertyRef Name="PANTALLA_ID" />
+          </Key>
+          <Property Name="PANTALLA_ID" Type="int" Nullable="false" />
+          <Property Name="PANTALLA_NOMBRE" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PANTALLA_DESCRIPCION" Type="varchar" MaxLength="200" />
+          <Property Name="PANTALLA_URL" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="PERMISOS">
+          <Key>
+            <PropertyRef Name="PERMISO_ID" />
+          </Key>
+          <Property Name="PERMISO_ID" Type="int" Nullable="false" />
+          <Property Name="PANTALLA_ID" Type="int" Nullable="false" />
+          <Property Name="ROL_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PRODUCTOS_INSTITUCION">
+          <Key>
+            <PropertyRef Name="PROD_INSTITUCION_ID" />
+          </Key>
+          <Property Name="PROD_INSTITUCION_ID" Type="int" Nullable="false" />
+          <Property Name="INSTITUCION_ID" Type="int" Nullable="false" />
+          <Property Name="PROD_INSTITUCION_NOMBRE" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="PROD_INSTITUCION_DESCRIPCION" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PRODUCTOS_PROVEEDOR">
+          <Key>
+            <PropertyRef Name="PROD_PROVEEDOR_ID" />
+          </Key>
+          <Property Name="PROD_PROVEEDOR_ID" Type="int" Nullable="false" />
+          <Property Name="PROVEEDOR_ID" Type="int" Nullable="false" />
+          <Property Name="PROD_PROVEEDOR_NOMBRE" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="PROD_PROVEEDOR_MARCA" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="PROD_PROVEEDOR_MODELO" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="PROD_PROVEEDOR_ANIO" Type="int" />
+          <Property Name="PROD_PROVEEDOR_BTU" Type="real" />
+          <Property Name="PROD_PROVEEDOR_POTENCIA" Type="real" />
+          <Property Name="PROD_PROVEEDOR_COLOR" Type="varchar" MaxLength="20" />
+          <Property Name="PROD_PROVEEDOR_EXISTENCIAS" Type="int" />
+          <Property Name="PROD_PROVEEDOR_DESCRIPCION" Type="varchar" MaxLength="200" />
+          <Property Name="PROD_PROVEEDOR_VOLTAJE" Type="real" />
+          <Property Name="PROD_PROVEEDOR_AREA" Type="real" />
+        </EntityType>
+        <EntityType Name="PROVEEDORES">
+          <Key>
+            <PropertyRef Name="PROVEEDOR_ID" />
+          </Key>
+          <Property Name="PROVEEDOR_ID" Type="int" Nullable="false" />
+          <Property Name="MUNICIPIO_ID" Type="int" Nullable="false" />
+          <Property Name="PROVEEDOR_EMPRESA" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="PROVEEDOR_CONTACTO" Type="varchar" MaxLength="75" Nullable="false" />
+          <Property Name="PROVEEDOR_TELEFONO1" Type="varchar" MaxLength="10" />
+          <Property Name="PROVEEDOR_TELEFONO2" Type="varchar" MaxLength="10" />
+          <Property Name="PROVEEDOR_CORREO" Type="varchar" MaxLength="50" />
+          <Property Name="PROVEEDOR_NIT" Type="varchar" MaxLength="20" />
+          <Property Name="PROVEEDOR_DESCRIPCION" Type="varchar" MaxLength="200" />
+          <Property Name="PROVEEDOR_DIRECCION" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="ROLES">
+          <Key>
+            <PropertyRef Name="ROL_ID" />
+          </Key>
+          <Property Name="ROL_ID" Type="int" Nullable="false" />
+          <Property Name="ROL_NOMBRE" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="ROL_DESCRIPCION" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="SOLICITUDES">
+          <Key>
+            <PropertyRef Name="SOLICITUD_ID" />
+          </Key>
+          <Property Name="SOLICITUD_ID" Type="int" Nullable="false" />
+          <Property Name="TIPO_SOLICITUD_ID" Type="int" Nullable="false" />
+          <Property Name="DEPTO_INSTITUCION_ID" Type="int" Nullable="false" />
+          <Property Name="SOLICITUD_CODIGO" Type="int" Nullable="false" />
+          <Property Name="SOLICITUD_RESPONSABLE" Type="varchar" MaxLength="75" Nullable="false" />
+          <Property Name="SOLICITUD_FECHA" Type="datetime" />
+          <Property Name="SOLICITUD_ESTADO" Type="bit" Nullable="false" />
+          <Property Name="SOLICITUD_OBSERVACION" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TABLA_MENSAJE">
+          <Key>
+            <PropertyRef Name="ID_MENSAJE" />
+          </Key>
+          <Property Name="ID_MENSAJE" Type="int" Nullable="false" />
+          <Property Name="MENSAJE" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TIPO_MANTENIMIENTOS">
+          <Key>
+            <PropertyRef Name="TIPO_MANTO_ID" />
+          </Key>
+          <Property Name="TIPO_MANTO_ID" Type="int" Nullable="false" />
+          <Property Name="TIPO_MANTO_NOMBRE" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="TIPO_MANTO_DESCRIPCION" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="TIPO_SOLICITUDES">
+          <Key>
+            <PropertyRef Name="TIPO_SOLICITUD_ID" />
+          </Key>
+          <Property Name="TIPO_SOLICITUD_ID" Type="int" Nullable="false" />
+          <Property Name="TIPO_SOLICITUD_NOMBRE" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="TIPO_SOLICITUD_DESCRIPCION" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="USUARIOS">
+          <Key>
+            <PropertyRef Name="USUARIO_USUARIO" />
+          </Key>
+          <Property Name="USUARIO_USUARIO" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="PROVEEDOR_ID" Type="int" />
+          <Property Name="INSTITUCION_ID" Type="int" />
+          <Property Name="ROL_ID" Type="int" Nullable="false" />
+          <Property Name="USUARIO_NOMBRE" Type="varchar" MaxLength="75" Nullable="false" />
+          <Property Name="USUARIO_CORREO" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="USUARIO_TELEFONO" Type="varchar" MaxLength="10" />
+          <Property Name="USUARIO_CONTRASENIA" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="USUARIO_ESTADO" Type="bit" Nullable="false" />
+          <Property Name="USUARIO_BLOQUEADO" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_ALERTAS_R7_EQUIPOS">
+          <End Role="EQUIPOS" Type="Self.EQUIPOS" Multiplicity="1" />
+          <End Role="ALERTAS" Type="Self.ALERTAS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EQUIPOS">
+              <PropertyRef Name="EQUIPO_ID" />
+            </Principal>
+            <Dependent Role="ALERTAS">
+              <PropertyRef Name="EQUIPO_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_APROBADO_R28_SOLICITU">
+          <End Role="SOLICITUDES" Type="Self.SOLICITUDES" Multiplicity="1" />
+          <End Role="APROBADOS" Type="Self.APROBADOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SOLICITUDES">
+              <PropertyRef Name="SOLICITUD_ID" />
+            </Principal>
+            <Dependent Role="APROBADOS">
+              <PropertyRef Name="SOLICITUD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_COMPRAS_R15_PROVEEDO">
+          <End Role="PROVEEDORES" Type="Self.PROVEEDORES" Multiplicity="0..1" />
+          <End Role="COMPRAS" Type="Self.COMPRAS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROVEEDORES">
+              <PropertyRef Name="PROVEEDOR_ID" />
+            </Principal>
+            <Dependent Role="COMPRAS">
+              <PropertyRef Name="PROVEEDOR_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_COMPRAS_R26_INSTITUC">
+          <End Role="INSTITUCIONES" Type="Self.INSTITUCIONES" Multiplicity="1" />
+          <End Role="COMPRAS" Type="Self.COMPRAS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INSTITUCIONES">
+              <PropertyRef Name="INSTITUCION_ID" />
+            </Principal>
+            <Dependent Role="COMPRAS">
+              <PropertyRef Name="INSTITUCION_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CONDICIO_CONDICION_INSTITUC">
+          <End Role="INSTITUCIONES" Type="Self.INSTITUCIONES" Multiplicity="1" />
+          <End Role="CONDICIONES" Type="Self.CONDICIONES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INSTITUCIONES">
+              <PropertyRef Name="INSTITUCION_ID" />
+            </Principal>
+            <Dependent Role="CONDICIONES">
+              <PropertyRef Name="INSTITUCION_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CONDICIO_CONDICION_PROVEEDO">
+          <End Role="PROVEEDORES" Type="Self.PROVEEDORES" Multiplicity="1" />
+          <End Role="CONDICIONES" Type="Self.CONDICIONES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROVEEDORES">
+              <PropertyRef Name="PROVEEDOR_ID" />
+            </Principal>
+            <Dependent Role="CONDICIONES">
+              <PropertyRef Name="PROVEEDOR_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CONTRATO_R24_COMPRAS">
+          <End Role="COMPRAS" Type="Self.COMPRAS" Multiplicity="1" />
+          <End Role="CONTRATOS" Type="Self.CONTRATOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COMPRAS">
+              <PropertyRef Name="COMPRA_ID" />
+            </Principal>
+            <Dependent Role="CONTRATOS">
+              <PropertyRef Name="COMPRA_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DEPARTAM_R10_INSTITUC">
+          <End Role="INSTITUCIONES" Type="Self.INSTITUCIONES" Multiplicity="1" />
+          <End Role="DEPARTAMENTOS_INSTITUCION" Type="Self.DEPARTAMENTOS_INSTITUCION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INSTITUCIONES">
+              <PropertyRef Name="INSTITUCION_ID" />
+            </Principal>
+            <Dependent Role="DEPARTAMENTOS_INSTITUCION">
+              <PropertyRef Name="INSTITUCION_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DETALLE__R18_MANTENIM">
+          <End Role="MANTENIMIENTOS" Type="Self.MANTENIMIENTOS" Multiplicity="1" />
+          <End Role="DETALLE_MANTENIMIENTO" Type="Self.DETALLE_MANTENIMIENTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MANTENIMIENTOS">
+              <PropertyRef Name="MANTO_ID" />
+            </Principal>
+            <Dependent Role="DETALLE_MANTENIMIENTO">
+              <PropertyRef Name="MANTO_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DETALLE__R19_EQUIPOS">
+          <End Role="EQUIPOS" Type="Self.EQUIPOS" Multiplicity="1" />
+          <End Role="DETALLE_MANTENIMIENTO" Type="Self.DETALLE_MANTENIMIENTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EQUIPOS">
+              <PropertyRef Name="EQUIPO_ID" />
+            </Principal>
+            <Dependent Role="DETALLE_MANTENIMIENTO">
+              <PropertyRef Name="EQUIPO_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DETALLE__R21_INSTALAC">
+          <End Role="INSTALACIONES" Type="Self.INSTALACIONES" Multiplicity="1" />
+          <End Role="DETALLE_INSTALACION" Type="Self.DETALLE_INSTALACION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INSTALACIONES">
+              <PropertyRef Name="INSTALACION_ID" />
+            </Principal>
+            <Dependent Role="DETALLE_INSTALACION">
+              <PropertyRef Name="INSTALACION_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DETALLE__R22_EQUIPOS">
+          <End Role="EQUIPOS" Type="Self.EQUIPOS" Multiplicity="1" />
+          <End Role="DETALLE_INSTALACION" Type="Self.DETALLE_INSTALACION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EQUIPOS">
+              <PropertyRef Name="EQUIPO_ID" />
+            </Principal>
+            <Dependent Role="DETALLE_INSTALACION">
+              <PropertyRef Name="EQUIPO_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DETALLE__R25_COMPRAS">
+          <End Role="COMPRAS" Type="Self.COMPRAS" Multiplicity="1" />
+          <End Role="DETALLE_COMPRAS" Type="Self.DETALLE_COMPRAS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COMPRAS">
+              <PropertyRef Name="COMPRA_ID" />
+            </Principal>
+            <Dependent Role="DETALLE_COMPRAS">
+              <PropertyRef Name="COMPRA_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DETALLE__R31_SOLICITU">
+          <End Role="SOLICITUDES" Type="Self.SOLICITUDES" Multiplicity="1" />
+          <End Role="DETALLE_SOLICITUD" Type="Self.DETALLE_SOLICITUD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SOLICITUDES">
+              <PropertyRef Name="SOLICITUD_ID" />
+            </Principal>
+            <Dependent Role="DETALLE_SOLICITUD">
+              <PropertyRef Name="SOLICITUD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DETALLE__R33_PRODUCTO">
+          <End Role="PRODUCTOS_INSTITUCION" Type="Self.PRODUCTOS_INSTITUCION" Multiplicity="1" />
+          <End Role="DETALLE_SOLICITUD" Type="Self.DETALLE_SOLICITUD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCTOS_INSTITUCION">
+              <PropertyRef Name="PROD_INSTITUCION_ID" />
+            </Principal>
+            <Dependent Role="DETALLE_SOLICITUD">
+              <PropertyRef Name="PROD_INSTITUCION_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DOCUMENT_R40_EQUIPOS">
+          <End Role="EQUIPOS" Type="Self.EQUIPOS" Multiplicity="1" />
+          <End Role="DOCUMENTOS" Type="Self.DOCUMENTOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EQUIPOS">
+              <PropertyRef Name="EQUIPO_ID" />
+            </Principal>
+            <Dependent Role="DOCUMENTOS">
+              <PropertyRef Name="EQUIPO_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EQUIPOS_R35_COMPRAS">
+          <End Role="COMPRAS" Type="Self.COMPRAS" Multiplicity="1" />
+          <End Role="EQUIPOS" Type="Self.EQUIPOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COMPRAS">
+              <PropertyRef Name="COMPRA_ID" />
+            </Principal>
+            <Dependent Role="EQUIPOS">
+              <PropertyRef Name="COMPRA_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_INSTALAC_R13_PROVEEDO">
+          <End Role="PROVEEDORES" Type="Self.PROVEEDORES" Multiplicity="1" />
+          <End Role="INSTALACIONES" Type="Self.INSTALACIONES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROVEEDORES">
+              <PropertyRef Name="PROVEEDOR_ID" />
+            </Principal>
+            <Dependent Role="INSTALACIONES">
+              <PropertyRef Name="PROVEEDOR_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_INSTALAC_R23_CONTRATO">
+          <End Role="CONTRATOS" Type="Self.CONTRATOS" Multiplicity="1" />
+          <End Role="INSTALACIONES" Type="Self.INSTALACIONES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CONTRATOS">
+              <PropertyRef Name="CONTRATO_ID" />
+            </Principal>
+            <Dependent Role="INSTALACIONES">
+              <PropertyRef Name="CONTRATO_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_INSTITUC_R5_MUNICIPI">
+          <End Role="MUNICIPIOS" Type="Self.MUNICIPIOS" Multiplicity="1" />
+          <End Role="INSTITUCIONES" Type="Self.INSTITUCIONES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MUNICIPIOS">
+              <PropertyRef Name="MUNICIPIO_ID" />
+            </Principal>
+            <Dependent Role="INSTITUCIONES">
+              <PropertyRef Name="MUNICIPIO_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LICITACI_R29_SOLICITU">
+          <End Role="SOLICITUDES" Type="Self.SOLICITUDES" Multiplicity="1" />
+          <End Role="LICITACIONES" Type="Self.LICITACIONES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SOLICITUDES">
+              <PropertyRef Name="SOLICITUD_ID" />
+            </Principal>
+            <Dependent Role="LICITACIONES">
+              <PropertyRef Name="SOLICITUD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MANTENIM_R12_TIPO_MAN">
+          <End Role="TIPO_MANTENIMIENTOS" Type="Self.TIPO_MANTENIMIENTOS" Multiplicity="1" />
+          <End Role="MANTENIMIENTOS" Type="Self.MANTENIMIENTOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPO_MANTENIMIENTOS">
+              <PropertyRef Name="TIPO_MANTO_ID" />
+            </Principal>
+            <Dependent Role="MANTENIMIENTOS">
+              <PropertyRef Name="TIPO_MANTO_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MANTENIM_R20_CONTRATO">
+          <End Role="CONTRATOS" Type="Self.CONTRATOS" Multiplicity="1" />
+          <End Role="MANTENIMIENTOS" Type="Self.MANTENIMIENTOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CONTRATOS">
+              <PropertyRef Name="CONTRATO_ID" />
+            </Principal>
+            <Dependent Role="MANTENIMIENTOS">
+              <PropertyRef Name="CONTRATO_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MANTENIM_R6_PROVEEDO">
+          <End Role="PROVEEDORES" Type="Self.PROVEEDORES" Multiplicity="1" />
+          <End Role="MANTENIMIENTOS" Type="Self.MANTENIMIENTOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROVEEDORES">
+              <PropertyRef Name="PROVEEDOR_ID" />
+            </Principal>
+            <Dependent Role="MANTENIMIENTOS">
+              <PropertyRef Name="PROVEEDOR_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MUNICIPI_R4_DEPARTAM">
+          <End Role="DEPARTAMENTOS" Type="Self.DEPARTAMENTOS" Multiplicity="1" />
+          <End Role="MUNICIPIOS" Type="Self.MUNICIPIOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEPARTAMENTOS">
+              <PropertyRef Name="DEPTO_ID" />
+            </Principal>
+            <Dependent Role="MUNICIPIOS">
+              <PropertyRef Name="DEPTO_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OFERTAS_R17_PROVEEDO">
+          <End Role="PROVEEDORES" Type="Self.PROVEEDORES" Multiplicity="1" />
+          <End Role="OFERTAS" Type="Self.OFERTAS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROVEEDORES">
+              <PropertyRef Name="PROVEEDOR_ID" />
+            </Principal>
+            <Dependent Role="OFERTAS">
+              <PropertyRef Name="PROVEEDOR_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OFERTAS_R27_LICITACI">
+          <End Role="LICITACIONES" Type="Self.LICITACIONES" Multiplicity="1" />
+          <End Role="OFERTAS" Type="Self.OFERTAS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LICITACIONES">
+              <PropertyRef Name="LICITACION_ID" />
+            </Principal>
+            <Dependent Role="OFERTAS">
+              <PropertyRef Name="LICITACION_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PERMISOS_R1_PANTALLA">
+          <End Role="PANTALLAS" Type="Self.PANTALLAS" Multiplicity="1" />
+          <End Role="PERMISOS" Type="Self.PERMISOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PANTALLAS">
+              <PropertyRef Name="PANTALLA_ID" />
+            </Principal>
+            <Dependent Role="PERMISOS">
+              <PropertyRef Name="PANTALLA_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PERMISOS_R2_ROLES">
+          <End Role="ROLES" Type="Self.ROLES" Multiplicity="1" />
+          <End Role="PERMISOS" Type="Self.PERMISOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ROLES">
+              <PropertyRef Name="ROL_ID" />
+            </Principal>
+            <Dependent Role="PERMISOS">
+              <PropertyRef Name="ROL_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUCTO_R16_PROVEEDO">
+          <End Role="PROVEEDORES" Type="Self.PROVEEDORES" Multiplicity="1" />
+          <End Role="PRODUCTOS_PROVEEDOR" Type="Self.PRODUCTOS_PROVEEDOR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROVEEDORES">
+              <PropertyRef Name="PROVEEDOR_ID" />
+            </Principal>
+            <Dependent Role="PRODUCTOS_PROVEEDOR">
+              <PropertyRef Name="PROVEEDOR_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUCTO_R41_INSTITUC">
+          <End Role="INSTITUCIONES" Type="Self.INSTITUCIONES" Multiplicity="1" />
+          <End Role="PRODUCTOS_INSTITUCION" Type="Self.PRODUCTOS_INSTITUCION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INSTITUCIONES">
+              <PropertyRef Name="INSTITUCION_ID" />
+            </Principal>
+            <Dependent Role="PRODUCTOS_INSTITUCION">
+              <PropertyRef Name="INSTITUCION_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PROVEEDO_R14_MUNICIPI">
+          <End Role="MUNICIPIOS" Type="Self.MUNICIPIOS" Multiplicity="1" />
+          <End Role="PROVEEDORES" Type="Self.PROVEEDORES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MUNICIPIOS">
+              <PropertyRef Name="MUNICIPIO_ID" />
+            </Principal>
+            <Dependent Role="PROVEEDORES">
+              <PropertyRef Name="MUNICIPIO_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SOLICITU_R30_TIPO_SOL">
+          <End Role="TIPO_SOLICITUDES" Type="Self.TIPO_SOLICITUDES" Multiplicity="1" />
+          <End Role="SOLICITUDES" Type="Self.SOLICITUDES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPO_SOLICITUDES">
+              <PropertyRef Name="TIPO_SOLICITUD_ID" />
+            </Principal>
+            <Dependent Role="SOLICITUDES">
+              <PropertyRef Name="TIPO_SOLICITUD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SOLICITU_R32_DEPARTAM">
+          <End Role="DEPARTAMENTOS_INSTITUCION" Type="Self.DEPARTAMENTOS_INSTITUCION" Multiplicity="1" />
+          <End Role="SOLICITUDES" Type="Self.SOLICITUDES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEPARTAMENTOS_INSTITUCION">
+              <PropertyRef Name="DEPTO_INSTITUCION_ID" />
+            </Principal>
+            <Dependent Role="SOLICITUDES">
+              <PropertyRef Name="DEPTO_INSTITUCION_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USUARIOS_R11_INSTITUC">
+          <End Role="INSTITUCIONES" Type="Self.INSTITUCIONES" Multiplicity="0..1" />
+          <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INSTITUCIONES">
+              <PropertyRef Name="INSTITUCION_ID" />
+            </Principal>
+            <Dependent Role="USUARIOS">
+              <PropertyRef Name="INSTITUCION_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USUARIOS_R3_ROLES">
+          <End Role="ROLES" Type="Self.ROLES" Multiplicity="1" />
+          <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ROLES">
+              <PropertyRef Name="ROL_ID" />
+            </Principal>
+            <Dependent Role="USUARIOS">
+              <PropertyRef Name="ROL_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USUARIOS_R8_PROVEEDO">
+          <End Role="PROVEEDORES" Type="Self.PROVEEDORES" Multiplicity="0..1" />
+          <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROVEEDORES">
+              <PropertyRef Name="PROVEEDOR_ID" />
+            </Principal>
+            <Dependent Role="USUARIOS">
+              <PropertyRef Name="PROVEEDOR_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BDLUPITAModelStoreContainer">
+          <EntitySet Name="ALERTAS" EntityType="Self.ALERTAS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="APROBADOS" EntityType="Self.APROBADOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BITACORA" EntityType="Self.BITACORA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="COMPRAS" EntityType="Self.COMPRAS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CONDICIONES" EntityType="Self.CONDICIONES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CONTRATOS" EntityType="Self.CONTRATOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DEPARTAMENTOS" EntityType="Self.DEPARTAMENTOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DEPARTAMENTOS_INSTITUCION" EntityType="Self.DEPARTAMENTOS_INSTITUCION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DETALLE_COMPRAS" EntityType="Self.DETALLE_COMPRAS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DETALLE_INSTALACION" EntityType="Self.DETALLE_INSTALACION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DETALLE_MANTENIMIENTO" EntityType="Self.DETALLE_MANTENIMIENTO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DETALLE_SOLICITUD" EntityType="Self.DETALLE_SOLICITUD" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DOCUMENTOS" EntityType="Self.DOCUMENTOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EQUIPOS" EntityType="Self.EQUIPOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="INSTALACIONES" EntityType="Self.INSTALACIONES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="INSTITUCIONES" EntityType="Self.INSTITUCIONES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LICITACIONES" EntityType="Self.LICITACIONES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MANTENIMIENTOS" EntityType="Self.MANTENIMIENTOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MUNICIPIOS" EntityType="Self.MUNICIPIOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OFERTAS" EntityType="Self.OFERTAS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PANTALLAS" EntityType="Self.PANTALLAS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PERMISOS" EntityType="Self.PERMISOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PRODUCTOS_INSTITUCION" EntityType="Self.PRODUCTOS_INSTITUCION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PRODUCTOS_PROVEEDOR" EntityType="Self.PRODUCTOS_PROVEEDOR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PROVEEDORES" EntityType="Self.PROVEEDORES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ROLES" EntityType="Self.ROLES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SOLICITUDES" EntityType="Self.SOLICITUDES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TABLA_MENSAJE" EntityType="Self.TABLA_MENSAJE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TIPO_MANTENIMIENTOS" EntityType="Self.TIPO_MANTENIMIENTOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TIPO_SOLICITUDES" EntityType="Self.TIPO_SOLICITUDES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USUARIOS" EntityType="Self.USUARIOS" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ALERTAS_R7_EQUIPOS" Association="Self.FK_ALERTAS_R7_EQUIPOS">
+            <End Role="EQUIPOS" EntitySet="EQUIPOS" />
+            <End Role="ALERTAS" EntitySet="ALERTAS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_APROBADO_R28_SOLICITU" Association="Self.FK_APROBADO_R28_SOLICITU">
+            <End Role="SOLICITUDES" EntitySet="SOLICITUDES" />
+            <End Role="APROBADOS" EntitySet="APROBADOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_COMPRAS_R15_PROVEEDO" Association="Self.FK_COMPRAS_R15_PROVEEDO">
+            <End Role="PROVEEDORES" EntitySet="PROVEEDORES" />
+            <End Role="COMPRAS" EntitySet="COMPRAS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_COMPRAS_R26_INSTITUC" Association="Self.FK_COMPRAS_R26_INSTITUC">
+            <End Role="INSTITUCIONES" EntitySet="INSTITUCIONES" />
+            <End Role="COMPRAS" EntitySet="COMPRAS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CONDICIO_CONDICION_INSTITUC" Association="Self.FK_CONDICIO_CONDICION_INSTITUC">
+            <End Role="INSTITUCIONES" EntitySet="INSTITUCIONES" />
+            <End Role="CONDICIONES" EntitySet="CONDICIONES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CONDICIO_CONDICION_PROVEEDO" Association="Self.FK_CONDICIO_CONDICION_PROVEEDO">
+            <End Role="PROVEEDORES" EntitySet="PROVEEDORES" />
+            <End Role="CONDICIONES" EntitySet="CONDICIONES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CONTRATO_R24_COMPRAS" Association="Self.FK_CONTRATO_R24_COMPRAS">
+            <End Role="COMPRAS" EntitySet="COMPRAS" />
+            <End Role="CONTRATOS" EntitySet="CONTRATOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DEPARTAM_R10_INSTITUC" Association="Self.FK_DEPARTAM_R10_INSTITUC">
+            <End Role="INSTITUCIONES" EntitySet="INSTITUCIONES" />
+            <End Role="DEPARTAMENTOS_INSTITUCION" EntitySet="DEPARTAMENTOS_INSTITUCION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DETALLE__R18_MANTENIM" Association="Self.FK_DETALLE__R18_MANTENIM">
+            <End Role="MANTENIMIENTOS" EntitySet="MANTENIMIENTOS" />
+            <End Role="DETALLE_MANTENIMIENTO" EntitySet="DETALLE_MANTENIMIENTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DETALLE__R19_EQUIPOS" Association="Self.FK_DETALLE__R19_EQUIPOS">
+            <End Role="EQUIPOS" EntitySet="EQUIPOS" />
+            <End Role="DETALLE_MANTENIMIENTO" EntitySet="DETALLE_MANTENIMIENTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DETALLE__R21_INSTALAC" Association="Self.FK_DETALLE__R21_INSTALAC">
+            <End Role="INSTALACIONES" EntitySet="INSTALACIONES" />
+            <End Role="DETALLE_INSTALACION" EntitySet="DETALLE_INSTALACION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DETALLE__R22_EQUIPOS" Association="Self.FK_DETALLE__R22_EQUIPOS">
+            <End Role="EQUIPOS" EntitySet="EQUIPOS" />
+            <End Role="DETALLE_INSTALACION" EntitySet="DETALLE_INSTALACION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DETALLE__R25_COMPRAS" Association="Self.FK_DETALLE__R25_COMPRAS">
+            <End Role="COMPRAS" EntitySet="COMPRAS" />
+            <End Role="DETALLE_COMPRAS" EntitySet="DETALLE_COMPRAS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DETALLE__R31_SOLICITU" Association="Self.FK_DETALLE__R31_SOLICITU">
+            <End Role="SOLICITUDES" EntitySet="SOLICITUDES" />
+            <End Role="DETALLE_SOLICITUD" EntitySet="DETALLE_SOLICITUD" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DETALLE__R33_PRODUCTO" Association="Self.FK_DETALLE__R33_PRODUCTO">
+            <End Role="PRODUCTOS_INSTITUCION" EntitySet="PRODUCTOS_INSTITUCION" />
+            <End Role="DETALLE_SOLICITUD" EntitySet="DETALLE_SOLICITUD" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DOCUMENT_R40_EQUIPOS" Association="Self.FK_DOCUMENT_R40_EQUIPOS">
+            <End Role="EQUIPOS" EntitySet="EQUIPOS" />
+            <End Role="DOCUMENTOS" EntitySet="DOCUMENTOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EQUIPOS_R35_COMPRAS" Association="Self.FK_EQUIPOS_R35_COMPRAS">
+            <End Role="COMPRAS" EntitySet="COMPRAS" />
+            <End Role="EQUIPOS" EntitySet="EQUIPOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_INSTALAC_R13_PROVEEDO" Association="Self.FK_INSTALAC_R13_PROVEEDO">
+            <End Role="PROVEEDORES" EntitySet="PROVEEDORES" />
+            <End Role="INSTALACIONES" EntitySet="INSTALACIONES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_INSTALAC_R23_CONTRATO" Association="Self.FK_INSTALAC_R23_CONTRATO">
+            <End Role="CONTRATOS" EntitySet="CONTRATOS" />
+            <End Role="INSTALACIONES" EntitySet="INSTALACIONES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_INSTITUC_R5_MUNICIPI" Association="Self.FK_INSTITUC_R5_MUNICIPI">
+            <End Role="MUNICIPIOS" EntitySet="MUNICIPIOS" />
+            <End Role="INSTITUCIONES" EntitySet="INSTITUCIONES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LICITACI_R29_SOLICITU" Association="Self.FK_LICITACI_R29_SOLICITU">
+            <End Role="SOLICITUDES" EntitySet="SOLICITUDES" />
+            <End Role="LICITACIONES" EntitySet="LICITACIONES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MANTENIM_R12_TIPO_MAN" Association="Self.FK_MANTENIM_R12_TIPO_MAN">
+            <End Role="TIPO_MANTENIMIENTOS" EntitySet="TIPO_MANTENIMIENTOS" />
+            <End Role="MANTENIMIENTOS" EntitySet="MANTENIMIENTOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MANTENIM_R20_CONTRATO" Association="Self.FK_MANTENIM_R20_CONTRATO">
+            <End Role="CONTRATOS" EntitySet="CONTRATOS" />
+            <End Role="MANTENIMIENTOS" EntitySet="MANTENIMIENTOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MANTENIM_R6_PROVEEDO" Association="Self.FK_MANTENIM_R6_PROVEEDO">
+            <End Role="PROVEEDORES" EntitySet="PROVEEDORES" />
+            <End Role="MANTENIMIENTOS" EntitySet="MANTENIMIENTOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MUNICIPI_R4_DEPARTAM" Association="Self.FK_MUNICIPI_R4_DEPARTAM">
+            <End Role="DEPARTAMENTOS" EntitySet="DEPARTAMENTOS" />
+            <End Role="MUNICIPIOS" EntitySet="MUNICIPIOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OFERTAS_R17_PROVEEDO" Association="Self.FK_OFERTAS_R17_PROVEEDO">
+            <End Role="PROVEEDORES" EntitySet="PROVEEDORES" />
+            <End Role="OFERTAS" EntitySet="OFERTAS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OFERTAS_R27_LICITACI" Association="Self.FK_OFERTAS_R27_LICITACI">
+            <End Role="LICITACIONES" EntitySet="LICITACIONES" />
+            <End Role="OFERTAS" EntitySet="OFERTAS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PERMISOS_R1_PANTALLA" Association="Self.FK_PERMISOS_R1_PANTALLA">
+            <End Role="PANTALLAS" EntitySet="PANTALLAS" />
+            <End Role="PERMISOS" EntitySet="PERMISOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PERMISOS_R2_ROLES" Association="Self.FK_PERMISOS_R2_ROLES">
+            <End Role="ROLES" EntitySet="ROLES" />
+            <End Role="PERMISOS" EntitySet="PERMISOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUCTO_R16_PROVEEDO" Association="Self.FK_PRODUCTO_R16_PROVEEDO">
+            <End Role="PROVEEDORES" EntitySet="PROVEEDORES" />
+            <End Role="PRODUCTOS_PROVEEDOR" EntitySet="PRODUCTOS_PROVEEDOR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUCTO_R41_INSTITUC" Association="Self.FK_PRODUCTO_R41_INSTITUC">
+            <End Role="INSTITUCIONES" EntitySet="INSTITUCIONES" />
+            <End Role="PRODUCTOS_INSTITUCION" EntitySet="PRODUCTOS_INSTITUCION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PROVEEDO_R14_MUNICIPI" Association="Self.FK_PROVEEDO_R14_MUNICIPI">
+            <End Role="MUNICIPIOS" EntitySet="MUNICIPIOS" />
+            <End Role="PROVEEDORES" EntitySet="PROVEEDORES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SOLICITU_R30_TIPO_SOL" Association="Self.FK_SOLICITU_R30_TIPO_SOL">
+            <End Role="TIPO_SOLICITUDES" EntitySet="TIPO_SOLICITUDES" />
+            <End Role="SOLICITUDES" EntitySet="SOLICITUDES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SOLICITU_R32_DEPARTAM" Association="Self.FK_SOLICITU_R32_DEPARTAM">
+            <End Role="DEPARTAMENTOS_INSTITUCION" EntitySet="DEPARTAMENTOS_INSTITUCION" />
+            <End Role="SOLICITUDES" EntitySet="SOLICITUDES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USUARIOS_R11_INSTITUC" Association="Self.FK_USUARIOS_R11_INSTITUC">
+            <End Role="INSTITUCIONES" EntitySet="INSTITUCIONES" />
+            <End Role="USUARIOS" EntitySet="USUARIOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USUARIOS_R3_ROLES" Association="Self.FK_USUARIOS_R3_ROLES">
+            <End Role="ROLES" EntitySet="ROLES" />
+            <End Role="USUARIOS" EntitySet="USUARIOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USUARIOS_R8_PROVEEDO" Association="Self.FK_USUARIOS_R8_PROVEEDO">
+            <End Role="PROVEEDORES" EntitySet="PROVEEDORES" />
+            <End Role="USUARIOS" EntitySet="USUARIOS" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BDLUPITAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ALERTAS">
+          <Key>
+            <PropertyRef Name="ALERTA_ID" />
+          </Key>
+          <Property Name="ALERTA_ID" Type="Int32" Nullable="false" />
+          <Property Name="EQUIPO_ID" Type="Int32" Nullable="false" />
+          <Property Name="ALERTA_FECHA" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ALERTA_MENSAJE" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ALERTA_ESTADO" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="EQUIPOS" Relationship="Self.FK_ALERTAS_R7_EQUIPOS" FromRole="ALERTAS" ToRole="EQUIPOS" />
+        </EntityType>
+        <EntityType Name="APROBADOS">
+          <Key>
+            <PropertyRef Name="APROBADO_ID" />
+          </Key>
+          <Property Name="APROBADO_ID" Type="Int32" Nullable="false" />
+          <Property Name="SOLICITUD_ID" Type="Int32" Nullable="false" />
+          <Property Name="APROBADO_FECHA" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="APROBADO_RESPONSABLE" Type="String" MaxLength="75" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="APROBADO_OBSERVACIONES" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="SOLICITUDES" Relationship="Self.FK_APROBADO_R28_SOLICITU" FromRole="APROBADOS" ToRole="SOLICITUDES" />
+        </EntityType>
+        <EntityType Name="BITACORA">
+          <Key>
+            <PropertyRef Name="BITACORA_ID" />
+          </Key>
+          <Property Name="BITACORA_ID" Type="Int32" Nullable="false" />
+          <Property Name="BITACORA_USUARIO" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="BITACORA_FECHA" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="BITACORA_MOVIMIENTO" Type="String" MaxLength="400" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="COMPRAS">
+          <Key>
+            <PropertyRef Name="COMPRA_ID" />
+          </Key>
+          <Property Name="COMPRA_ID" Type="Int32" Nullable="false" />
+          <Property Name="INSTITUCION_ID" Type="Int32" Nullable="false" />
+          <Property Name="PROVEEDOR_ID" Type="Int32" />
+          <Property Name="COMPRA_FACTURA" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="COMPRA_FECHA" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="COMPRA_VENDEDOR" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
+          <Property Name="COMPRA_SOLICITUD_CODIGO" Type="Int32" />
+          <Property Name="COMPRA_RESPONSABLE" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PROVEEDORES" Relationship="Self.FK_COMPRAS_R15_PROVEEDO" FromRole="COMPRAS" ToRole="PROVEEDORES" />
+          <NavigationProperty Name="INSTITUCIONES" Relationship="Self.FK_COMPRAS_R26_INSTITUC" FromRole="COMPRAS" ToRole="INSTITUCIONES" />
+          <NavigationProperty Name="CONTRATOS" Relationship="Self.FK_CONTRATO_R24_COMPRAS" FromRole="COMPRAS" ToRole="CONTRATOS" />
+          <NavigationProperty Name="DETALLE_COMPRAS" Relationship="Self.FK_DETALLE__R25_COMPRAS" FromRole="COMPRAS" ToRole="DETALLE_COMPRAS" />
+          <NavigationProperty Name="EQUIPOS" Relationship="Self.FK_EQUIPOS_R35_COMPRAS" FromRole="COMPRAS" ToRole="EQUIPOS" />
+        </EntityType>
+        <EntityType Name="CONTRATOS">
+          <Key>
+            <PropertyRef Name="CONTRATO_ID" />
+          </Key>
+          <Property Name="CONTRATO_ID" Type="Int32" Nullable="false" />
+          <Property Name="COMPRA_ID" Type="Int32" Nullable="false" />
+          <Property Name="CONTRATO_NUMERO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CONTRATO_FECHA" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CONTRATO_RESP_UACI" Type="String" MaxLength="75" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CONTRATO_RESP_PROVEEDOR" Type="String" MaxLength="75" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CONTRATO_RESP_DEPTO" Type="String" MaxLength="75" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CONTRATO_OBSERVACION" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="COMPRAS" Relationship="Self.FK_CONTRATO_R24_COMPRAS" FromRole="CONTRATOS" ToRole="COMPRAS" />
+          <NavigationProperty Name="INSTALACIONES" Relationship="Self.FK_INSTALAC_R23_CONTRATO" FromRole="CONTRATOS" ToRole="INSTALACIONES" />
+          <NavigationProperty Name="MANTENIMIENTOS" Relationship="Self.FK_MANTENIM_R20_CONTRATO" FromRole="CONTRATOS" ToRole="MANTENIMIENTOS" />
+        </EntityType>
+        <EntityType Name="DEPARTAMENTOS">
+          <Key>
+            <PropertyRef Name="DEPTO_ID" />
+          </Key>
+          <Property Name="DEPTO_ID" Type="Int32" Nullable="false" />
+          <Property Name="DEPTO_NOMBRE" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="MUNICIPIOS" Relationship="Self.FK_MUNICIPI_R4_DEPARTAM" FromRole="DEPARTAMENTOS" ToRole="MUNICIPIOS" />
+        </EntityType>
+        <EntityType Name="DEPARTAMENTOS_INSTITUCION">
+          <Key>
+            <PropertyRef Name="DEPTO_INSTITUCION_ID" />
+          </Key>
+          <Property Name="DEPTO_INSTITUCION_ID" Type="Int32" Nullable="false" />
+          <Property Name="INSTITUCION_ID" Type="Int32" Nullable="false" />
+          <Property Name="DEPTO_INSTITUCION_NOMBRE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DEPTO_INSTITUCION_JEFE" Type="String" MaxLength="75" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DEPTO_INSTITUCION_TELEFONO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="DEPTO_INSTITUCION_DESCRIPCION" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="INSTITUCIONES" Relationship="Self.FK_DEPARTAM_R10_INSTITUC" FromRole="DEPARTAMENTOS_INSTITUCION" ToRole="INSTITUCIONES" />
+          <NavigationProperty Name="SOLICITUDES" Relationship="Self.FK_SOLICITU_R32_DEPARTAM" FromRole="DEPARTAMENTOS_INSTITUCION" ToRole="SOLICITUDES" />
+        </EntityType>
+        <EntityType Name="DETALLE_COMPRAS">
+          <Key>
+            <PropertyRef Name="DET_COMPRA_ID" />
+          </Key>
+          <Property Name="DET_COMPRA_ID" Type="Int32" Nullable="false" />
+          <Property Name="COMPRA_ID" Type="Int32" Nullable="false" />
+          <Property Name="DET_COMPRA_CANTIDAD" Type="Int32" Nullable="false" />
+          <Property Name="DET_COMPRA_DESCRIPCION" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DET_COMPRA_PRECIO" Type="Single" Nullable="false" />
+          <NavigationProperty Name="COMPRAS" Relationship="Self.FK_DETALLE__R25_COMPRAS" FromRole="DETALLE_COMPRAS" ToRole="COMPRAS" />
+        </EntityType>
+        <EntityType Name="DETALLE_INSTALACION">
+          <Key>
+            <PropertyRef Name="DET_INSTALACION_ID" />
+          </Key>
+          <Property Name="DET_INSTALACION_ID" Type="Int32" Nullable="false" />
+          <Property Name="INSTALACION_ID" Type="Int32" Nullable="false" />
+          <Property Name="EQUIPO_ID" Type="Int32" Nullable="false" />
+          <Property Name="DET_INSTALACION_ESTADO_INICIAL" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DET_INSTALACION_ESTADO_FINAL" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DET_INSTALACION_DESCRIPCION" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="DET_INSTALACION_AUTORIZADO_POR" Type="String" MaxLength="75" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="INSTALACIONES" Relationship="Self.FK_DETALLE__R21_INSTALAC" FromRole="DETALLE_INSTALACION" ToRole="INSTALACIONES" />
+          <NavigationProperty Name="EQUIPOS" Relationship="Self.FK_DETALLE__R22_EQUIPOS" FromRole="DETALLE_INSTALACION" ToRole="EQUIPOS" />
+        </EntityType>
+        <EntityType Name="DETALLE_MANTENIMIENTO">
+          <Key>
+            <PropertyRef Name="DET_MANTO_ID" />
+          </Key>
+          <Property Name="DET_MANTO_ID" Type="Int32" Nullable="false" />
+          <Property Name="MANTO_ID" Type="Int32" Nullable="false" />
+          <Property Name="EQUIPO_ID" Type="Int32" Nullable="false" />
+          <Property Name="DET_MANTO_ESTADO_INICIAL" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DET_MANTO_ESTADO_FINAL" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DET_MANTO_DESCRIPCION" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="MANTENIMIENTOS" Relationship="Self.FK_DETALLE__R18_MANTENIM" FromRole="DETALLE_MANTENIMIENTO" ToRole="MANTENIMIENTOS" />
+          <NavigationProperty Name="EQUIPOS" Relationship="Self.FK_DETALLE__R19_EQUIPOS" FromRole="DETALLE_MANTENIMIENTO" ToRole="EQUIPOS" />
+        </EntityType>
+        <EntityType Name="DETALLE_SOLICITUD">
+          <Key>
+            <PropertyRef Name="DET_SOLICITUD_ID" />
+          </Key>
+          <Property Name="DET_SOLICITUD_ID" Type="Int32" Nullable="false" />
+          <Property Name="PROD_INSTITUCION_ID" Type="Int32" Nullable="false" />
+          <Property Name="SOLICITUD_ID" Type="Int32" Nullable="false" />
+          <Property Name="DET_SOLICITUD_CANTIDAD" Type="Int32" Nullable="false" />
+          <Property Name="DET_SOLICITUD_DESCRIPCION" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="SOLICITUDES" Relationship="Self.FK_DETALLE__R31_SOLICITU" FromRole="DETALLE_SOLICITUD" ToRole="SOLICITUDES" />
+          <NavigationProperty Name="PRODUCTOS_INSTITUCION" Relationship="Self.FK_DETALLE__R33_PRODUCTO" FromRole="DETALLE_SOLICITUD" ToRole="PRODUCTOS_INSTITUCION" />
+        </EntityType>
+        <EntityType Name="DOCUMENTOS">
+          <Key>
+            <PropertyRef Name="DOCU_ID" />
+          </Key>
+          <Property Name="DOCU_ID" Type="Int32" Nullable="false" />
+          <Property Name="EQUIPO_ID" Type="Int32" Nullable="false" />
+          <Property Name="DOCU_NOMBRE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DOCU_URL" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="EQUIPOS" Relationship="Self.FK_DOCUMENT_R40_EQUIPOS" FromRole="DOCUMENTOS" ToRole="EQUIPOS" />
+        </EntityType>
+        <EntityType Name="EQUIPOS">
+          <Key>
+            <PropertyRef Name="EQUIPO_ID" />
+          </Key>
+          <Property Name="EQUIPO_ID" Type="Int32" Nullable="false" />
+          <Property Name="COMPRA_ID" Type="Int32" Nullable="false" />
+          <Property Name="EQUIPO_NOMBRE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EQUIPO_MARCA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EQUIPO_MODELO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EQUIPO_FECHA_COMPRA" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EQUIPO_ANIO_FABRICACION" Type="Int32" />
+          <Property Name="EQUIPO_BTU" Type="Single" />
+          <Property Name="EQUIPO_POTENCIA" Type="Single" />
+          <Property Name="EQUIPO_MANTENIMIENTO" Type="DateTime" Precision="3" />
+          <Property Name="EQUIPO_ESTADO" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="ALERTAS" Relationship="Self.FK_ALERTAS_R7_EQUIPOS" FromRole="EQUIPOS" ToRole="ALERTAS" />
+          <NavigationProperty Name="COMPRAS" Relationship="Self.FK_EQUIPOS_R35_COMPRAS" FromRole="EQUIPOS" ToRole="COMPRAS" />
+          <NavigationProperty Name="DETALLE_INSTALACION" Relationship="Self.FK_DETALLE__R22_EQUIPOS" FromRole="EQUIPOS" ToRole="DETALLE_INSTALACION" />
+          <NavigationProperty Name="DETALLE_MANTENIMIENTO" Relationship="Self.FK_DETALLE__R19_EQUIPOS" FromRole="EQUIPOS" ToRole="DETALLE_MANTENIMIENTO" />
+          <NavigationProperty Name="DOCUMENTOS" Relationship="Self.FK_DOCUMENT_R40_EQUIPOS" FromRole="EQUIPOS" ToRole="DOCUMENTOS" />
+        </EntityType>
+        <EntityType Name="INSTALACIONES">
+          <Key>
+            <PropertyRef Name="INSTALACION_ID" />
+          </Key>
+          <Property Name="INSTALACION_ID" Type="Int32" Nullable="false" />
+          <Property Name="CONTRATO_ID" Type="Int32" Nullable="false" />
+          <Property Name="PROVEEDOR_ID" Type="Int32" Nullable="false" />
+          <Property Name="INSTALACION_INICIO" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="INSTALACION_FINALIZACION" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="INSTALACION_RESPONSABLE" Type="String" MaxLength="75" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="INSTALACION_DESCRIPCION" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CONTRATOS" Relationship="Self.FK_INSTALAC_R23_CONTRATO" FromRole="INSTALACIONES" ToRole="CONTRATOS" />
+          <NavigationProperty Name="DETALLE_INSTALACION" Relationship="Self.FK_DETALLE__R21_INSTALAC" FromRole="INSTALACIONES" ToRole="DETALLE_INSTALACION" />
+          <NavigationProperty Name="PROVEEDORES" Relationship="Self.FK_INSTALAC_R13_PROVEEDO" FromRole="INSTALACIONES" ToRole="PROVEEDORES" />
+        </EntityType>
+        <EntityType Name="INSTITUCIONES">
+          <Key>
+            <PropertyRef Name="INSTITUCION_ID" />
+          </Key>
+          <Property Name="INSTITUCION_ID" Type="Int32" Nullable="false" />
+          <Property Name="MUNICIPIO_ID" Type="Int32" Nullable="false" />
+          <Property Name="INSTITUCION_NOMBRE" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="INSTITUCION_ENCARGADO" Type="String" MaxLength="75" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="INSTITUCION_TELEFONO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="INSTITUCION_DIRECCION" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="INSTITUCION_DESCRIPCION" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="COMPRAS" Relationship="Self.FK_COMPRAS_R26_INSTITUC" FromRole="INSTITUCIONES" ToRole="COMPRAS" />
+          <NavigationProperty Name="DEPARTAMENTOS_INSTITUCION" Relationship="Self.FK_DEPARTAM_R10_INSTITUC" FromRole="INSTITUCIONES" ToRole="DEPARTAMENTOS_INSTITUCION" />
+          <NavigationProperty Name="MUNICIPIOS" Relationship="Self.FK_INSTITUC_R5_MUNICIPI" FromRole="INSTITUCIONES" ToRole="MUNICIPIOS" />
+          <NavigationProperty Name="PRODUCTOS_INSTITUCION" Relationship="Self.FK_PRODUCTO_R41_INSTITUC" FromRole="INSTITUCIONES" ToRole="PRODUCTOS_INSTITUCION" />
+          <NavigationProperty Name="USUARIOS" Relationship="Self.FK_USUARIOS_R11_INSTITUC" FromRole="INSTITUCIONES" ToRole="USUARIOS" />
+          <NavigationProperty Name="PROVEEDORES" Relationship="Self.CONDICIONES" FromRole="INSTITUCIONES" ToRole="PROVEEDORES" />
+        </EntityType>
+        <EntityType Name="LICITACIONES">
+          <Key>
+            <PropertyRef Name="LICITACION_ID" />
+          </Key>
+          <Property Name="LICITACION_ID" Type="Int32" Nullable="false" />
+          <Property Name="SOLICITUD_ID" Type="Int32" Nullable="false" />
+          <Property Name="LICITACION_NUMERO" Type="Int32" Nullable="false" />
+          <Property Name="LICITACION_ANIO" Type="Int32" Nullable="false" />
+          <Property Name="LICITACION_INICIO" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LICITACION_FINALIZACION" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LICITACION_DESCRIPCION" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="SOLICITUDES" Relationship="Self.FK_LICITACI_R29_SOLICITU" FromRole="LICITACIONES" ToRole="SOLICITUDES" />
+          <NavigationProperty Name="OFERTAS" Relationship="Self.FK_OFERTAS_R27_LICITACI" FromRole="LICITACIONES" ToRole="OFERTAS" />
+        </EntityType>
+        <EntityType Name="MANTENIMIENTOS">
+          <Key>
+            <PropertyRef Name="MANTO_ID" />
+          </Key>
+          <Property Name="MANTO_ID" Type="Int32" Nullable="false" />
+          <Property Name="TIPO_MANTO_ID" Type="Int32" Nullable="false" />
+          <Property Name="CONTRATO_ID" Type="Int32" Nullable="false" />
+          <Property Name="PROVEEDOR_ID" Type="Int32" Nullable="false" />
+          <Property Name="MANTO_INICIO" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MANTO_FINALIZACION" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MANTO_RESPONSABLE" Type="String" MaxLength="75" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MANTO_DESCRIPCION" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="MANTO_AUTORIZADO_POR" Type="String" MaxLength="75" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="CONTRATOS" Relationship="Self.FK_MANTENIM_R20_CONTRATO" FromRole="MANTENIMIENTOS" ToRole="CONTRATOS" />
+          <NavigationProperty Name="DETALLE_MANTENIMIENTO" Relationship="Self.FK_DETALLE__R18_MANTENIM" FromRole="MANTENIMIENTOS" ToRole="DETALLE_MANTENIMIENTO" />
+          <NavigationProperty Name="TIPO_MANTENIMIENTOS" Relationship="Self.FK_MANTENIM_R12_TIPO_MAN" FromRole="MANTENIMIENTOS" ToRole="TIPO_MANTENIMIENTOS" />
+          <NavigationProperty Name="PROVEEDORES" Relationship="Self.FK_MANTENIM_R6_PROVEEDO" FromRole="MANTENIMIENTOS" ToRole="PROVEEDORES" />
+        </EntityType>
+        <EntityType Name="MUNICIPIOS">
+          <Key>
+            <PropertyRef Name="MUNICIPIO_ID" />
+          </Key>
+          <Property Name="MUNICIPIO_ID" Type="Int32" Nullable="false" />
+          <Property Name="DEPTO_ID" Type="Int32" Nullable="false" />
+          <Property Name="MUNICIPIO_NOMBRE" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="DEPARTAMENTOS" Relationship="Self.FK_MUNICIPI_R4_DEPARTAM" FromRole="MUNICIPIOS" ToRole="DEPARTAMENTOS" />
+          <NavigationProperty Name="INSTITUCIONES" Relationship="Self.FK_INSTITUC_R5_MUNICIPI" FromRole="MUNICIPIOS" ToRole="INSTITUCIONES" />
+          <NavigationProperty Name="PROVEEDORES" Relationship="Self.FK_PROVEEDO_R14_MUNICIPI" FromRole="MUNICIPIOS" ToRole="PROVEEDORES" />
+        </EntityType>
+        <EntityType Name="OFERTAS">
+          <Key>
+            <PropertyRef Name="OFERTA_ID" />
+          </Key>
+          <Property Name="OFERTA_ID" Type="Int32" Nullable="false" />
+          <Property Name="LICITACION_ID" Type="Int32" Nullable="false" />
+          <Property Name="PROVEEDOR_ID" Type="Int32" Nullable="false" />
+          <Property Name="OFERTA_PRECIO" Type="Single" Nullable="false" />
+          <Property Name="OFERTA_DESCRIPCION" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="LICITACIONES" Relationship="Self.FK_OFERTAS_R27_LICITACI" FromRole="OFERTAS" ToRole="LICITACIONES" />
+          <NavigationProperty Name="PROVEEDORES" Relationship="Self.FK_OFERTAS_R17_PROVEEDO" FromRole="OFERTAS" ToRole="PROVEEDORES" />
+        </EntityType>
+        <EntityType Name="PANTALLAS">
+          <Key>
+            <PropertyRef Name="PANTALLA_ID" />
+          </Key>
+          <Property Name="PANTALLA_ID" Type="Int32" Nullable="false" />
+          <Property Name="PANTALLA_NOMBRE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PANTALLA_DESCRIPCION" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="PANTALLA_URL" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PERMISOS" Relationship="Self.FK_PERMISOS_R1_PANTALLA" FromRole="PANTALLAS" ToRole="PERMISOS" />
+        </EntityType>
+        <EntityType Name="PERMISOS">
+          <Key>
+            <PropertyRef Name="PERMISO_ID" />
+          </Key>
+          <Property Name="PERMISO_ID" Type="Int32" Nullable="false" />
+          <Property Name="PANTALLA_ID" Type="Int32" Nullable="false" />
+          <Property Name="ROL_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PANTALLAS" Relationship="Self.FK_PERMISOS_R1_PANTALLA" FromRole="PERMISOS" ToRole="PANTALLAS" />
+          <NavigationProperty Name="ROLES" Relationship="Self.FK_PERMISOS_R2_ROLES" FromRole="PERMISOS" ToRole="ROLES" />
+        </EntityType>
+        <EntityType Name="PRODUCTOS_INSTITUCION">
+          <Key>
+            <PropertyRef Name="PROD_INSTITUCION_ID" />
+          </Key>
+          <Property Name="PROD_INSTITUCION_ID" Type="Int32" Nullable="false" />
+          <Property Name="INSTITUCION_ID" Type="Int32" Nullable="false" />
+          <Property Name="PROD_INSTITUCION_NOMBRE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PROD_INSTITUCION_DESCRIPCION" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="DETALLE_SOLICITUD" Relationship="Self.FK_DETALLE__R33_PRODUCTO" FromRole="PRODUCTOS_INSTITUCION" ToRole="DETALLE_SOLICITUD" />
+          <NavigationProperty Name="INSTITUCIONES" Relationship="Self.FK_PRODUCTO_R41_INSTITUC" FromRole="PRODUCTOS_INSTITUCION" ToRole="INSTITUCIONES" />
+        </EntityType>
+        <EntityType Name="PRODUCTOS_PROVEEDOR">
+          <Key>
+            <PropertyRef Name="PROD_PROVEEDOR_ID" />
+          </Key>
+          <Property Name="PROD_PROVEEDOR_ID" Type="Int32" Nullable="false" />
+          <Property Name="PROVEEDOR_ID" Type="Int32" Nullable="false" />
+          <Property Name="PROD_PROVEEDOR_NOMBRE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PROD_PROVEEDOR_MARCA" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PROD_PROVEEDOR_MODELO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PROD_PROVEEDOR_ANIO" Type="Int32" />
+          <Property Name="PROD_PROVEEDOR_BTU" Type="Single" />
+          <Property Name="PROD_PROVEEDOR_POTENCIA" Type="Single" />
+          <Property Name="PROD_PROVEEDOR_COLOR" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PROD_PROVEEDOR_EXISTENCIAS" Type="Int32" />
+          <Property Name="PROD_PROVEEDOR_DESCRIPCION" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="PROD_PROVEEDOR_VOLTAJE" Type="Single" />
+          <Property Name="PROD_PROVEEDOR_AREA" Type="Single" />
+          <NavigationProperty Name="PROVEEDORES" Relationship="Self.FK_PRODUCTO_R16_PROVEEDO" FromRole="PRODUCTOS_PROVEEDOR" ToRole="PROVEEDORES" />
+        </EntityType>
+        <EntityType Name="PROVEEDORES">
+          <Key>
+            <PropertyRef Name="PROVEEDOR_ID" />
+          </Key>
+          <Property Name="PROVEEDOR_ID" Type="Int32" Nullable="false" />
+          <Property Name="MUNICIPIO_ID" Type="Int32" Nullable="false" />
+          <Property Name="PROVEEDOR_EMPRESA" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PROVEEDOR_CONTACTO" Type="String" MaxLength="75" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PROVEEDOR_TELEFONO1" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="PROVEEDOR_TELEFONO2" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="PROVEEDOR_CORREO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PROVEEDOR_NIT" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PROVEEDOR_DESCRIPCION" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="PROVEEDOR_DIRECCION" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="COMPRAS" Relationship="Self.FK_COMPRAS_R15_PROVEEDO" FromRole="PROVEEDORES" ToRole="COMPRAS" />
+          <NavigationProperty Name="INSTALACIONES" Relationship="Self.FK_INSTALAC_R13_PROVEEDO" FromRole="PROVEEDORES" ToRole="INSTALACIONES" />
+          <NavigationProperty Name="MANTENIMIENTOS" Relationship="Self.FK_MANTENIM_R6_PROVEEDO" FromRole="PROVEEDORES" ToRole="MANTENIMIENTOS" />
+          <NavigationProperty Name="MUNICIPIOS" Relationship="Self.FK_PROVEEDO_R14_MUNICIPI" FromRole="PROVEEDORES" ToRole="MUNICIPIOS" />
+          <NavigationProperty Name="OFERTAS" Relationship="Self.FK_OFERTAS_R17_PROVEEDO" FromRole="PROVEEDORES" ToRole="OFERTAS" />
+          <NavigationProperty Name="PRODUCTOS_PROVEEDOR" Relationship="Self.FK_PRODUCTO_R16_PROVEEDO" FromRole="PROVEEDORES" ToRole="PRODUCTOS_PROVEEDOR" />
+          <NavigationProperty Name="USUARIOS" Relationship="Self.FK_USUARIOS_R8_PROVEEDO" FromRole="PROVEEDORES" ToRole="USUARIOS" />
+          <NavigationProperty Name="INSTITUCIONES" Relationship="Self.CONDICIONES" FromRole="PROVEEDORES" ToRole="INSTITUCIONES" />
+        </EntityType>
+        <EntityType Name="ROLES">
+          <Key>
+            <PropertyRef Name="ROL_ID" />
+          </Key>
+          <Property Name="ROL_ID" Type="Int32" Nullable="false" />
+          <Property Name="ROL_NOMBRE" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ROL_DESCRIPCION" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PERMISOS" Relationship="Self.FK_PERMISOS_R2_ROLES" FromRole="ROLES" ToRole="PERMISOS" />
+          <NavigationProperty Name="USUARIOS" Relationship="Self.FK_USUARIOS_R3_ROLES" FromRole="ROLES" ToRole="USUARIOS" />
+        </EntityType>
+        <EntityType Name="SOLICITUDES">
+          <Key>
+            <PropertyRef Name="SOLICITUD_ID" />
+          </Key>
+          <Property Name="SOLICITUD_ID" Type="Int32" Nullable="false" />
+          <Property Name="TIPO_SOLICITUD_ID" Type="Int32" Nullable="false" />
+          <Property Name="DEPTO_INSTITUCION_ID" Type="Int32" Nullable="false" />
+          <Property Name="SOLICITUD_CODIGO" Type="Int32" Nullable="false" />
+          <Property Name="SOLICITUD_RESPONSABLE" Type="String" MaxLength="75" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SOLICITUD_FECHA" Type="DateTime" Precision="3" />
+          <Property Name="SOLICITUD_ESTADO" Type="Boolean" Nullable="false" />
+          <Property Name="SOLICITUD_OBSERVACION" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="APROBADOS" Relationship="Self.FK_APROBADO_R28_SOLICITU" FromRole="SOLICITUDES" ToRole="APROBADOS" />
+          <NavigationProperty Name="DEPARTAMENTOS_INSTITUCION" Relationship="Self.FK_SOLICITU_R32_DEPARTAM" FromRole="SOLICITUDES" ToRole="DEPARTAMENTOS_INSTITUCION" />
+          <NavigationProperty Name="DETALLE_SOLICITUD" Relationship="Self.FK_DETALLE__R31_SOLICITU" FromRole="SOLICITUDES" ToRole="DETALLE_SOLICITUD" />
+          <NavigationProperty Name="LICITACIONES" Relationship="Self.FK_LICITACI_R29_SOLICITU" FromRole="SOLICITUDES" ToRole="LICITACIONES" />
+          <NavigationProperty Name="TIPO_SOLICITUDES" Relationship="Self.FK_SOLICITU_R30_TIPO_SOL" FromRole="SOLICITUDES" ToRole="TIPO_SOLICITUDES" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TABLA_MENSAJE">
+          <Key>
+            <PropertyRef Name="ID_MENSAJE" />
+          </Key>
+          <Property Name="ID_MENSAJE" Type="Int32" Nullable="false" />
+          <Property Name="MENSAJE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="TIPO_MANTENIMIENTOS">
+          <Key>
+            <PropertyRef Name="TIPO_MANTO_ID" />
+          </Key>
+          <Property Name="TIPO_MANTO_ID" Type="Int32" Nullable="false" />
+          <Property Name="TIPO_MANTO_NOMBRE" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TIPO_MANTO_DESCRIPCION" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="MANTENIMIENTOS" Relationship="Self.FK_MANTENIM_R12_TIPO_MAN" FromRole="TIPO_MANTENIMIENTOS" ToRole="MANTENIMIENTOS" />
+        </EntityType>
+        <EntityType Name="TIPO_SOLICITUDES">
+          <Key>
+            <PropertyRef Name="TIPO_SOLICITUD_ID" />
+          </Key>
+          <Property Name="TIPO_SOLICITUD_ID" Type="Int32" Nullable="false" />
+          <Property Name="TIPO_SOLICITUD_NOMBRE" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TIPO_SOLICITUD_DESCRIPCION" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="SOLICITUDES" Relationship="Self.FK_SOLICITU_R30_TIPO_SOL" FromRole="TIPO_SOLICITUDES" ToRole="SOLICITUDES" />
+        </EntityType>
+        <EntityType Name="USUARIOS">
+          <Key>
+            <PropertyRef Name="USUARIO_USUARIO" />
+          </Key>
+          <Property Name="USUARIO_USUARIO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PROVEEDOR_ID" Type="Int32" />
+          <Property Name="INSTITUCION_ID" Type="Int32" />
+          <Property Name="ROL_ID" Type="Int32" Nullable="false" />
+          <Property Name="USUARIO_NOMBRE" Type="String" MaxLength="75" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="USUARIO_CORREO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="USUARIO_TELEFONO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="USUARIO_CONTRASENIA" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="USUARIO_ESTADO" Type="Boolean" Nullable="false" />
+          <Property Name="USUARIO_BLOQUEADO" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="INSTITUCIONES" Relationship="Self.FK_USUARIOS_R11_INSTITUC" FromRole="USUARIOS" ToRole="INSTITUCIONES" />
+          <NavigationProperty Name="PROVEEDORES" Relationship="Self.FK_USUARIOS_R8_PROVEEDO" FromRole="USUARIOS" ToRole="PROVEEDORES" />
+          <NavigationProperty Name="ROLES" Relationship="Self.FK_USUARIOS_R3_ROLES" FromRole="USUARIOS" ToRole="ROLES" />
+        </EntityType>
+        <Association Name="FK_ALERTAS_R7_EQUIPOS">
+          <End Role="EQUIPOS" Type="Self.EQUIPOS" Multiplicity="1" />
+          <End Role="ALERTAS" Type="Self.ALERTAS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EQUIPOS">
+              <PropertyRef Name="EQUIPO_ID" />
+            </Principal>
+            <Dependent Role="ALERTAS">
+              <PropertyRef Name="EQUIPO_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_APROBADO_R28_SOLICITU">
+          <End Role="SOLICITUDES" Type="Self.SOLICITUDES" Multiplicity="1" />
+          <End Role="APROBADOS" Type="Self.APROBADOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SOLICITUDES">
+              <PropertyRef Name="SOLICITUD_ID" />
+            </Principal>
+            <Dependent Role="APROBADOS">
+              <PropertyRef Name="SOLICITUD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_COMPRAS_R15_PROVEEDO">
+          <End Role="PROVEEDORES" Type="Self.PROVEEDORES" Multiplicity="0..1" />
+          <End Role="COMPRAS" Type="Self.COMPRAS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROVEEDORES">
+              <PropertyRef Name="PROVEEDOR_ID" />
+            </Principal>
+            <Dependent Role="COMPRAS">
+              <PropertyRef Name="PROVEEDOR_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_COMPRAS_R26_INSTITUC">
+          <End Role="INSTITUCIONES" Type="Self.INSTITUCIONES" Multiplicity="1" />
+          <End Role="COMPRAS" Type="Self.COMPRAS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INSTITUCIONES">
+              <PropertyRef Name="INSTITUCION_ID" />
+            </Principal>
+            <Dependent Role="COMPRAS">
+              <PropertyRef Name="INSTITUCION_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CONTRATO_R24_COMPRAS">
+          <End Role="COMPRAS" Type="Self.COMPRAS" Multiplicity="1" />
+          <End Role="CONTRATOS" Type="Self.CONTRATOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COMPRAS">
+              <PropertyRef Name="COMPRA_ID" />
+            </Principal>
+            <Dependent Role="CONTRATOS">
+              <PropertyRef Name="COMPRA_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DETALLE__R25_COMPRAS">
+          <End Role="COMPRAS" Type="Self.COMPRAS" Multiplicity="1" />
+          <End Role="DETALLE_COMPRAS" Type="Self.DETALLE_COMPRAS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COMPRAS">
+              <PropertyRef Name="COMPRA_ID" />
+            </Principal>
+            <Dependent Role="DETALLE_COMPRAS">
+              <PropertyRef Name="COMPRA_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EQUIPOS_R35_COMPRAS">
+          <End Role="COMPRAS" Type="Self.COMPRAS" Multiplicity="1" />
+          <End Role="EQUIPOS" Type="Self.EQUIPOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COMPRAS">
+              <PropertyRef Name="COMPRA_ID" />
+            </Principal>
+            <Dependent Role="EQUIPOS">
+              <PropertyRef Name="COMPRA_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_INSTALAC_R23_CONTRATO">
+          <End Role="CONTRATOS" Type="Self.CONTRATOS" Multiplicity="1" />
+          <End Role="INSTALACIONES" Type="Self.INSTALACIONES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CONTRATOS">
+              <PropertyRef Name="CONTRATO_ID" />
+            </Principal>
+            <Dependent Role="INSTALACIONES">
+              <PropertyRef Name="CONTRATO_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MANTENIM_R20_CONTRATO">
+          <End Role="CONTRATOS" Type="Self.CONTRATOS" Multiplicity="1" />
+          <End Role="MANTENIMIENTOS" Type="Self.MANTENIMIENTOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CONTRATOS">
+              <PropertyRef Name="CONTRATO_ID" />
+            </Principal>
+            <Dependent Role="MANTENIMIENTOS">
+              <PropertyRef Name="CONTRATO_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MUNICIPI_R4_DEPARTAM">
+          <End Role="DEPARTAMENTOS" Type="Self.DEPARTAMENTOS" Multiplicity="1" />
+          <End Role="MUNICIPIOS" Type="Self.MUNICIPIOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEPARTAMENTOS">
+              <PropertyRef Name="DEPTO_ID" />
+            </Principal>
+            <Dependent Role="MUNICIPIOS">
+              <PropertyRef Name="DEPTO_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DEPARTAM_R10_INSTITUC">
+          <End Role="INSTITUCIONES" Type="Self.INSTITUCIONES" Multiplicity="1" />
+          <End Role="DEPARTAMENTOS_INSTITUCION" Type="Self.DEPARTAMENTOS_INSTITUCION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INSTITUCIONES">
+              <PropertyRef Name="INSTITUCION_ID" />
+            </Principal>
+            <Dependent Role="DEPARTAMENTOS_INSTITUCION">
+              <PropertyRef Name="INSTITUCION_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SOLICITU_R32_DEPARTAM">
+          <End Role="DEPARTAMENTOS_INSTITUCION" Type="Self.DEPARTAMENTOS_INSTITUCION" Multiplicity="1" />
+          <End Role="SOLICITUDES" Type="Self.SOLICITUDES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEPARTAMENTOS_INSTITUCION">
+              <PropertyRef Name="DEPTO_INSTITUCION_ID" />
+            </Principal>
+            <Dependent Role="SOLICITUDES">
+              <PropertyRef Name="DEPTO_INSTITUCION_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DETALLE__R21_INSTALAC">
+          <End Role="INSTALACIONES" Type="Self.INSTALACIONES" Multiplicity="1" />
+          <End Role="DETALLE_INSTALACION" Type="Self.DETALLE_INSTALACION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INSTALACIONES">
+              <PropertyRef Name="INSTALACION_ID" />
+            </Principal>
+            <Dependent Role="DETALLE_INSTALACION">
+              <PropertyRef Name="INSTALACION_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DETALLE__R22_EQUIPOS">
+          <End Role="EQUIPOS" Type="Self.EQUIPOS" Multiplicity="1" />
+          <End Role="DETALLE_INSTALACION" Type="Self.DETALLE_INSTALACION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EQUIPOS">
+              <PropertyRef Name="EQUIPO_ID" />
+            </Principal>
+            <Dependent Role="DETALLE_INSTALACION">
+              <PropertyRef Name="EQUIPO_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DETALLE__R18_MANTENIM">
+          <End Role="MANTENIMIENTOS" Type="Self.MANTENIMIENTOS" Multiplicity="1" />
+          <End Role="DETALLE_MANTENIMIENTO" Type="Self.DETALLE_MANTENIMIENTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MANTENIMIENTOS">
+              <PropertyRef Name="MANTO_ID" />
+            </Principal>
+            <Dependent Role="DETALLE_MANTENIMIENTO">
+              <PropertyRef Name="MANTO_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DETALLE__R19_EQUIPOS">
+          <End Role="EQUIPOS" Type="Self.EQUIPOS" Multiplicity="1" />
+          <End Role="DETALLE_MANTENIMIENTO" Type="Self.DETALLE_MANTENIMIENTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EQUIPOS">
+              <PropertyRef Name="EQUIPO_ID" />
+            </Principal>
+            <Dependent Role="DETALLE_MANTENIMIENTO">
+              <PropertyRef Name="EQUIPO_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DETALLE__R31_SOLICITU">
+          <End Role="SOLICITUDES" Type="Self.SOLICITUDES" Multiplicity="1" />
+          <End Role="DETALLE_SOLICITUD" Type="Self.DETALLE_SOLICITUD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SOLICITUDES">
+              <PropertyRef Name="SOLICITUD_ID" />
+            </Principal>
+            <Dependent Role="DETALLE_SOLICITUD">
+              <PropertyRef Name="SOLICITUD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DETALLE__R33_PRODUCTO">
+          <End Role="PRODUCTOS_INSTITUCION" Type="Self.PRODUCTOS_INSTITUCION" Multiplicity="1" />
+          <End Role="DETALLE_SOLICITUD" Type="Self.DETALLE_SOLICITUD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCTOS_INSTITUCION">
+              <PropertyRef Name="PROD_INSTITUCION_ID" />
+            </Principal>
+            <Dependent Role="DETALLE_SOLICITUD">
+              <PropertyRef Name="PROD_INSTITUCION_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DOCUMENT_R40_EQUIPOS">
+          <End Role="EQUIPOS" Type="Self.EQUIPOS" Multiplicity="1" />
+          <End Role="DOCUMENTOS" Type="Self.DOCUMENTOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EQUIPOS">
+              <PropertyRef Name="EQUIPO_ID" />
+            </Principal>
+            <Dependent Role="DOCUMENTOS">
+              <PropertyRef Name="EQUIPO_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_INSTALAC_R13_PROVEEDO">
+          <End Role="PROVEEDORES" Type="Self.PROVEEDORES" Multiplicity="1" />
+          <End Role="INSTALACIONES" Type="Self.INSTALACIONES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROVEEDORES">
+              <PropertyRef Name="PROVEEDOR_ID" />
+            </Principal>
+            <Dependent Role="INSTALACIONES">
+              <PropertyRef Name="PROVEEDOR_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_INSTITUC_R5_MUNICIPI">
+          <End Role="MUNICIPIOS" Type="Self.MUNICIPIOS" Multiplicity="1" />
+          <End Role="INSTITUCIONES" Type="Self.INSTITUCIONES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MUNICIPIOS">
+              <PropertyRef Name="MUNICIPIO_ID" />
+            </Principal>
+            <Dependent Role="INSTITUCIONES">
+              <PropertyRef Name="MUNICIPIO_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUCTO_R41_INSTITUC">
+          <End Role="INSTITUCIONES" Type="Self.INSTITUCIONES" Multiplicity="1" />
+          <End Role="PRODUCTOS_INSTITUCION" Type="Self.PRODUCTOS_INSTITUCION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INSTITUCIONES">
+              <PropertyRef Name="INSTITUCION_ID" />
+            </Principal>
+            <Dependent Role="PRODUCTOS_INSTITUCION">
+              <PropertyRef Name="INSTITUCION_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USUARIOS_R11_INSTITUC">
+          <End Role="INSTITUCIONES" Type="Self.INSTITUCIONES" Multiplicity="0..1" />
+          <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INSTITUCIONES">
+              <PropertyRef Name="INSTITUCION_ID" />
+            </Principal>
+            <Dependent Role="USUARIOS">
+              <PropertyRef Name="INSTITUCION_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LICITACI_R29_SOLICITU">
+          <End Role="SOLICITUDES" Type="Self.SOLICITUDES" Multiplicity="1" />
+          <End Role="LICITACIONES" Type="Self.LICITACIONES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SOLICITUDES">
+              <PropertyRef Name="SOLICITUD_ID" />
+            </Principal>
+            <Dependent Role="LICITACIONES">
+              <PropertyRef Name="SOLICITUD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OFERTAS_R27_LICITACI">
+          <End Role="LICITACIONES" Type="Self.LICITACIONES" Multiplicity="1" />
+          <End Role="OFERTAS" Type="Self.OFERTAS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LICITACIONES">
+              <PropertyRef Name="LICITACION_ID" />
+            </Principal>
+            <Dependent Role="OFERTAS">
+              <PropertyRef Name="LICITACION_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MANTENIM_R12_TIPO_MAN">
+          <End Role="TIPO_MANTENIMIENTOS" Type="Self.TIPO_MANTENIMIENTOS" Multiplicity="1" />
+          <End Role="MANTENIMIENTOS" Type="Self.MANTENIMIENTOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPO_MANTENIMIENTOS">
+              <PropertyRef Name="TIPO_MANTO_ID" />
+            </Principal>
+            <Dependent Role="MANTENIMIENTOS">
+              <PropertyRef Name="TIPO_MANTO_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MANTENIM_R6_PROVEEDO">
+          <End Role="PROVEEDORES" Type="Self.PROVEEDORES" Multiplicity="1" />
+          <End Role="MANTENIMIENTOS" Type="Self.MANTENIMIENTOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROVEEDORES">
+              <PropertyRef Name="PROVEEDOR_ID" />
+            </Principal>
+            <Dependent Role="MANTENIMIENTOS">
+              <PropertyRef Name="PROVEEDOR_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PROVEEDO_R14_MUNICIPI">
+          <End Role="MUNICIPIOS" Type="Self.MUNICIPIOS" Multiplicity="1" />
+          <End Role="PROVEEDORES" Type="Self.PROVEEDORES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MUNICIPIOS">
+              <PropertyRef Name="MUNICIPIO_ID" />
+            </Principal>
+            <Dependent Role="PROVEEDORES">
+              <PropertyRef Name="MUNICIPIO_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OFERTAS_R17_PROVEEDO">
+          <End Role="PROVEEDORES" Type="Self.PROVEEDORES" Multiplicity="1" />
+          <End Role="OFERTAS" Type="Self.OFERTAS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROVEEDORES">
+              <PropertyRef Name="PROVEEDOR_ID" />
+            </Principal>
+            <Dependent Role="OFERTAS">
+              <PropertyRef Name="PROVEEDOR_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PERMISOS_R1_PANTALLA">
+          <End Role="PANTALLAS" Type="Self.PANTALLAS" Multiplicity="1" />
+          <End Role="PERMISOS" Type="Self.PERMISOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PANTALLAS">
+              <PropertyRef Name="PANTALLA_ID" />
+            </Principal>
+            <Dependent Role="PERMISOS">
+              <PropertyRef Name="PANTALLA_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PERMISOS_R2_ROLES">
+          <End Role="ROLES" Type="Self.ROLES" Multiplicity="1" />
+          <End Role="PERMISOS" Type="Self.PERMISOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ROLES">
+              <PropertyRef Name="ROL_ID" />
+            </Principal>
+            <Dependent Role="PERMISOS">
+              <PropertyRef Name="ROL_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUCTO_R16_PROVEEDO">
+          <End Role="PROVEEDORES" Type="Self.PROVEEDORES" Multiplicity="1" />
+          <End Role="PRODUCTOS_PROVEEDOR" Type="Self.PRODUCTOS_PROVEEDOR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROVEEDORES">
+              <PropertyRef Name="PROVEEDOR_ID" />
+            </Principal>
+            <Dependent Role="PRODUCTOS_PROVEEDOR">
+              <PropertyRef Name="PROVEEDOR_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USUARIOS_R8_PROVEEDO">
+          <End Role="PROVEEDORES" Type="Self.PROVEEDORES" Multiplicity="0..1" />
+          <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROVEEDORES">
+              <PropertyRef Name="PROVEEDOR_ID" />
+            </Principal>
+            <Dependent Role="USUARIOS">
+              <PropertyRef Name="PROVEEDOR_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USUARIOS_R3_ROLES">
+          <End Role="ROLES" Type="Self.ROLES" Multiplicity="1" />
+          <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ROLES">
+              <PropertyRef Name="ROL_ID" />
+            </Principal>
+            <Dependent Role="USUARIOS">
+              <PropertyRef Name="ROL_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SOLICITU_R30_TIPO_SOL">
+          <End Role="TIPO_SOLICITUDES" Type="Self.TIPO_SOLICITUDES" Multiplicity="1" />
+          <End Role="SOLICITUDES" Type="Self.SOLICITUDES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPO_SOLICITUDES">
+              <PropertyRef Name="TIPO_SOLICITUD_ID" />
+            </Principal>
+            <Dependent Role="SOLICITUDES">
+              <PropertyRef Name="TIPO_SOLICITUD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CONDICIONES">
+          <End Role="INSTITUCIONES" Type="Self.INSTITUCIONES" Multiplicity="*" />
+          <End Role="PROVEEDORES" Type="Self.PROVEEDORES" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="BDLUPITAEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ALERTAS" EntityType="Self.ALERTAS" />
+          <EntitySet Name="APROBADOS" EntityType="Self.APROBADOS" />
+          <EntitySet Name="BITACORA" EntityType="Self.BITACORA" />
+          <EntitySet Name="COMPRAS" EntityType="Self.COMPRAS" />
+          <EntitySet Name="CONTRATOS" EntityType="Self.CONTRATOS" />
+          <EntitySet Name="DEPARTAMENTOS" EntityType="Self.DEPARTAMENTOS" />
+          <EntitySet Name="DEPARTAMENTOS_INSTITUCION" EntityType="Self.DEPARTAMENTOS_INSTITUCION" />
+          <EntitySet Name="DETALLE_COMPRAS" EntityType="Self.DETALLE_COMPRAS" />
+          <EntitySet Name="DETALLE_INSTALACION" EntityType="Self.DETALLE_INSTALACION" />
+          <EntitySet Name="DETALLE_MANTENIMIENTO" EntityType="Self.DETALLE_MANTENIMIENTO" />
+          <EntitySet Name="DETALLE_SOLICITUD" EntityType="Self.DETALLE_SOLICITUD" />
+          <EntitySet Name="DOCUMENTOS" EntityType="Self.DOCUMENTOS" />
+          <EntitySet Name="EQUIPOS" EntityType="Self.EQUIPOS" />
+          <EntitySet Name="INSTALACIONES" EntityType="Self.INSTALACIONES" />
+          <EntitySet Name="INSTITUCIONES" EntityType="Self.INSTITUCIONES" />
+          <EntitySet Name="LICITACIONES" EntityType="Self.LICITACIONES" />
+          <EntitySet Name="MANTENIMIENTOS" EntityType="Self.MANTENIMIENTOS" />
+          <EntitySet Name="MUNICIPIOS" EntityType="Self.MUNICIPIOS" />
+          <EntitySet Name="OFERTAS" EntityType="Self.OFERTAS" />
+          <EntitySet Name="PANTALLAS" EntityType="Self.PANTALLAS" />
+          <EntitySet Name="PERMISOS" EntityType="Self.PERMISOS" />
+          <EntitySet Name="PRODUCTOS_INSTITUCION" EntityType="Self.PRODUCTOS_INSTITUCION" />
+          <EntitySet Name="PRODUCTOS_PROVEEDOR" EntityType="Self.PRODUCTOS_PROVEEDOR" />
+          <EntitySet Name="PROVEEDORES" EntityType="Self.PROVEEDORES" />
+          <EntitySet Name="ROLES" EntityType="Self.ROLES" />
+          <EntitySet Name="SOLICITUDES" EntityType="Self.SOLICITUDES" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="TABLA_MENSAJE" EntityType="Self.TABLA_MENSAJE" />
+          <EntitySet Name="TIPO_MANTENIMIENTOS" EntityType="Self.TIPO_MANTENIMIENTOS" />
+          <EntitySet Name="TIPO_SOLICITUDES" EntityType="Self.TIPO_SOLICITUDES" />
+          <EntitySet Name="USUARIOS" EntityType="Self.USUARIOS" />
+          <AssociationSet Name="FK_ALERTAS_R7_EQUIPOS" Association="Self.FK_ALERTAS_R7_EQUIPOS">
+            <End Role="EQUIPOS" EntitySet="EQUIPOS" />
+            <End Role="ALERTAS" EntitySet="ALERTAS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_APROBADO_R28_SOLICITU" Association="Self.FK_APROBADO_R28_SOLICITU">
+            <End Role="SOLICITUDES" EntitySet="SOLICITUDES" />
+            <End Role="APROBADOS" EntitySet="APROBADOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_COMPRAS_R15_PROVEEDO" Association="Self.FK_COMPRAS_R15_PROVEEDO">
+            <End Role="PROVEEDORES" EntitySet="PROVEEDORES" />
+            <End Role="COMPRAS" EntitySet="COMPRAS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_COMPRAS_R26_INSTITUC" Association="Self.FK_COMPRAS_R26_INSTITUC">
+            <End Role="INSTITUCIONES" EntitySet="INSTITUCIONES" />
+            <End Role="COMPRAS" EntitySet="COMPRAS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CONTRATO_R24_COMPRAS" Association="Self.FK_CONTRATO_R24_COMPRAS">
+            <End Role="COMPRAS" EntitySet="COMPRAS" />
+            <End Role="CONTRATOS" EntitySet="CONTRATOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DETALLE__R25_COMPRAS" Association="Self.FK_DETALLE__R25_COMPRAS">
+            <End Role="COMPRAS" EntitySet="COMPRAS" />
+            <End Role="DETALLE_COMPRAS" EntitySet="DETALLE_COMPRAS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EQUIPOS_R35_COMPRAS" Association="Self.FK_EQUIPOS_R35_COMPRAS">
+            <End Role="COMPRAS" EntitySet="COMPRAS" />
+            <End Role="EQUIPOS" EntitySet="EQUIPOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_INSTALAC_R23_CONTRATO" Association="Self.FK_INSTALAC_R23_CONTRATO">
+            <End Role="CONTRATOS" EntitySet="CONTRATOS" />
+            <End Role="INSTALACIONES" EntitySet="INSTALACIONES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MANTENIM_R20_CONTRATO" Association="Self.FK_MANTENIM_R20_CONTRATO">
+            <End Role="CONTRATOS" EntitySet="CONTRATOS" />
+            <End Role="MANTENIMIENTOS" EntitySet="MANTENIMIENTOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MUNICIPI_R4_DEPARTAM" Association="Self.FK_MUNICIPI_R4_DEPARTAM">
+            <End Role="DEPARTAMENTOS" EntitySet="DEPARTAMENTOS" />
+            <End Role="MUNICIPIOS" EntitySet="MUNICIPIOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DEPARTAM_R10_INSTITUC" Association="Self.FK_DEPARTAM_R10_INSTITUC">
+            <End Role="INSTITUCIONES" EntitySet="INSTITUCIONES" />
+            <End Role="DEPARTAMENTOS_INSTITUCION" EntitySet="DEPARTAMENTOS_INSTITUCION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SOLICITU_R32_DEPARTAM" Association="Self.FK_SOLICITU_R32_DEPARTAM">
+            <End Role="DEPARTAMENTOS_INSTITUCION" EntitySet="DEPARTAMENTOS_INSTITUCION" />
+            <End Role="SOLICITUDES" EntitySet="SOLICITUDES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DETALLE__R21_INSTALAC" Association="Self.FK_DETALLE__R21_INSTALAC">
+            <End Role="INSTALACIONES" EntitySet="INSTALACIONES" />
+            <End Role="DETALLE_INSTALACION" EntitySet="DETALLE_INSTALACION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DETALLE__R22_EQUIPOS" Association="Self.FK_DETALLE__R22_EQUIPOS">
+            <End Role="EQUIPOS" EntitySet="EQUIPOS" />
+            <End Role="DETALLE_INSTALACION" EntitySet="DETALLE_INSTALACION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DETALLE__R18_MANTENIM" Association="Self.FK_DETALLE__R18_MANTENIM">
+            <End Role="MANTENIMIENTOS" EntitySet="MANTENIMIENTOS" />
+            <End Role="DETALLE_MANTENIMIENTO" EntitySet="DETALLE_MANTENIMIENTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DETALLE__R19_EQUIPOS" Association="Self.FK_DETALLE__R19_EQUIPOS">
+            <End Role="EQUIPOS" EntitySet="EQUIPOS" />
+            <End Role="DETALLE_MANTENIMIENTO" EntitySet="DETALLE_MANTENIMIENTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DETALLE__R31_SOLICITU" Association="Self.FK_DETALLE__R31_SOLICITU">
+            <End Role="SOLICITUDES" EntitySet="SOLICITUDES" />
+            <End Role="DETALLE_SOLICITUD" EntitySet="DETALLE_SOLICITUD" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DETALLE__R33_PRODUCTO" Association="Self.FK_DETALLE__R33_PRODUCTO">
+            <End Role="PRODUCTOS_INSTITUCION" EntitySet="PRODUCTOS_INSTITUCION" />
+            <End Role="DETALLE_SOLICITUD" EntitySet="DETALLE_SOLICITUD" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DOCUMENT_R40_EQUIPOS" Association="Self.FK_DOCUMENT_R40_EQUIPOS">
+            <End Role="EQUIPOS" EntitySet="EQUIPOS" />
+            <End Role="DOCUMENTOS" EntitySet="DOCUMENTOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_INSTALAC_R13_PROVEEDO" Association="Self.FK_INSTALAC_R13_PROVEEDO">
+            <End Role="PROVEEDORES" EntitySet="PROVEEDORES" />
+            <End Role="INSTALACIONES" EntitySet="INSTALACIONES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_INSTITUC_R5_MUNICIPI" Association="Self.FK_INSTITUC_R5_MUNICIPI">
+            <End Role="MUNICIPIOS" EntitySet="MUNICIPIOS" />
+            <End Role="INSTITUCIONES" EntitySet="INSTITUCIONES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUCTO_R41_INSTITUC" Association="Self.FK_PRODUCTO_R41_INSTITUC">
+            <End Role="INSTITUCIONES" EntitySet="INSTITUCIONES" />
+            <End Role="PRODUCTOS_INSTITUCION" EntitySet="PRODUCTOS_INSTITUCION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USUARIOS_R11_INSTITUC" Association="Self.FK_USUARIOS_R11_INSTITUC">
+            <End Role="INSTITUCIONES" EntitySet="INSTITUCIONES" />
+            <End Role="USUARIOS" EntitySet="USUARIOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LICITACI_R29_SOLICITU" Association="Self.FK_LICITACI_R29_SOLICITU">
+            <End Role="SOLICITUDES" EntitySet="SOLICITUDES" />
+            <End Role="LICITACIONES" EntitySet="LICITACIONES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OFERTAS_R27_LICITACI" Association="Self.FK_OFERTAS_R27_LICITACI">
+            <End Role="LICITACIONES" EntitySet="LICITACIONES" />
+            <End Role="OFERTAS" EntitySet="OFERTAS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MANTENIM_R12_TIPO_MAN" Association="Self.FK_MANTENIM_R12_TIPO_MAN">
+            <End Role="TIPO_MANTENIMIENTOS" EntitySet="TIPO_MANTENIMIENTOS" />
+            <End Role="MANTENIMIENTOS" EntitySet="MANTENIMIENTOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MANTENIM_R6_PROVEEDO" Association="Self.FK_MANTENIM_R6_PROVEEDO">
+            <End Role="PROVEEDORES" EntitySet="PROVEEDORES" />
+            <End Role="MANTENIMIENTOS" EntitySet="MANTENIMIENTOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PROVEEDO_R14_MUNICIPI" Association="Self.FK_PROVEEDO_R14_MUNICIPI">
+            <End Role="MUNICIPIOS" EntitySet="MUNICIPIOS" />
+            <End Role="PROVEEDORES" EntitySet="PROVEEDORES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OFERTAS_R17_PROVEEDO" Association="Self.FK_OFERTAS_R17_PROVEEDO">
+            <End Role="PROVEEDORES" EntitySet="PROVEEDORES" />
+            <End Role="OFERTAS" EntitySet="OFERTAS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PERMISOS_R1_PANTALLA" Association="Self.FK_PERMISOS_R1_PANTALLA">
+            <End Role="PANTALLAS" EntitySet="PANTALLAS" />
+            <End Role="PERMISOS" EntitySet="PERMISOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PERMISOS_R2_ROLES" Association="Self.FK_PERMISOS_R2_ROLES">
+            <End Role="ROLES" EntitySet="ROLES" />
+            <End Role="PERMISOS" EntitySet="PERMISOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUCTO_R16_PROVEEDO" Association="Self.FK_PRODUCTO_R16_PROVEEDO">
+            <End Role="PROVEEDORES" EntitySet="PROVEEDORES" />
+            <End Role="PRODUCTOS_PROVEEDOR" EntitySet="PRODUCTOS_PROVEEDOR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USUARIOS_R8_PROVEEDO" Association="Self.FK_USUARIOS_R8_PROVEEDO">
+            <End Role="PROVEEDORES" EntitySet="PROVEEDORES" />
+            <End Role="USUARIOS" EntitySet="USUARIOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USUARIOS_R3_ROLES" Association="Self.FK_USUARIOS_R3_ROLES">
+            <End Role="ROLES" EntitySet="ROLES" />
+            <End Role="USUARIOS" EntitySet="USUARIOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SOLICITU_R30_TIPO_SOL" Association="Self.FK_SOLICITU_R30_TIPO_SOL">
+            <End Role="TIPO_SOLICITUDES" EntitySet="TIPO_SOLICITUDES" />
+            <End Role="SOLICITUDES" EntitySet="SOLICITUDES" />
+          </AssociationSet>
+          <AssociationSet Name="CONDICIONES" Association="Self.CONDICIONES">
+            <End Role="INSTITUCIONES" EntitySet="INSTITUCIONES" />
+            <End Role="PROVEEDORES" EntitySet="PROVEEDORES" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BDLUPITAModelStoreContainer" CdmEntityContainer="BDLUPITAEntities">
+          <EntitySetMapping Name="ALERTAS">
+            <EntityTypeMapping TypeName="BDLUPITAModel.ALERTAS">
+              <MappingFragment StoreEntitySet="ALERTAS">
+                <ScalarProperty Name="ALERTA_ID" ColumnName="ALERTA_ID" />
+                <ScalarProperty Name="EQUIPO_ID" ColumnName="EQUIPO_ID" />
+                <ScalarProperty Name="ALERTA_FECHA" ColumnName="ALERTA_FECHA" />
+                <ScalarProperty Name="ALERTA_MENSAJE" ColumnName="ALERTA_MENSAJE" />
+                <ScalarProperty Name="ALERTA_ESTADO" ColumnName="ALERTA_ESTADO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="APROBADOS">
+            <EntityTypeMapping TypeName="BDLUPITAModel.APROBADOS">
+              <MappingFragment StoreEntitySet="APROBADOS">
+                <ScalarProperty Name="APROBADO_ID" ColumnName="APROBADO_ID" />
+                <ScalarProperty Name="SOLICITUD_ID" ColumnName="SOLICITUD_ID" />
+                <ScalarProperty Name="APROBADO_FECHA" ColumnName="APROBADO_FECHA" />
+                <ScalarProperty Name="APROBADO_RESPONSABLE" ColumnName="APROBADO_RESPONSABLE" />
+                <ScalarProperty Name="APROBADO_OBSERVACIONES" ColumnName="APROBADO_OBSERVACIONES" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BITACORA">
+            <EntityTypeMapping TypeName="BDLUPITAModel.BITACORA">
+              <MappingFragment StoreEntitySet="BITACORA">
+                <ScalarProperty Name="BITACORA_ID" ColumnName="BITACORA_ID" />
+                <ScalarProperty Name="BITACORA_USUARIO" ColumnName="BITACORA_USUARIO" />
+                <ScalarProperty Name="BITACORA_FECHA" ColumnName="BITACORA_FECHA" />
+                <ScalarProperty Name="BITACORA_MOVIMIENTO" ColumnName="BITACORA_MOVIMIENTO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="COMPRAS">
+            <EntityTypeMapping TypeName="BDLUPITAModel.COMPRAS">
+              <MappingFragment StoreEntitySet="COMPRAS">
+                <ScalarProperty Name="COMPRA_ID" ColumnName="COMPRA_ID" />
+                <ScalarProperty Name="INSTITUCION_ID" ColumnName="INSTITUCION_ID" />
+                <ScalarProperty Name="PROVEEDOR_ID" ColumnName="PROVEEDOR_ID" />
+                <ScalarProperty Name="COMPRA_FACTURA" ColumnName="COMPRA_FACTURA" />
+                <ScalarProperty Name="COMPRA_FECHA" ColumnName="COMPRA_FECHA" />
+                <ScalarProperty Name="COMPRA_VENDEDOR" ColumnName="COMPRA_VENDEDOR" />
+                <ScalarProperty Name="COMPRA_SOLICITUD_CODIGO" ColumnName="COMPRA_SOLICITUD_CODIGO" />
+                <ScalarProperty Name="COMPRA_RESPONSABLE" ColumnName="COMPRA_RESPONSABLE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CONTRATOS">
+            <EntityTypeMapping TypeName="BDLUPITAModel.CONTRATOS">
+              <MappingFragment StoreEntitySet="CONTRATOS">
+                <ScalarProperty Name="CONTRATO_ID" ColumnName="CONTRATO_ID" />
+                <ScalarProperty Name="COMPRA_ID" ColumnName="COMPRA_ID" />
+                <ScalarProperty Name="CONTRATO_NUMERO" ColumnName="CONTRATO_NUMERO" />
+                <ScalarProperty Name="CONTRATO_FECHA" ColumnName="CONTRATO_FECHA" />
+                <ScalarProperty Name="CONTRATO_RESP_UACI" ColumnName="CONTRATO_RESP_UACI" />
+                <ScalarProperty Name="CONTRATO_RESP_PROVEEDOR" ColumnName="CONTRATO_RESP_PROVEEDOR" />
+                <ScalarProperty Name="CONTRATO_RESP_DEPTO" ColumnName="CONTRATO_RESP_DEPTO" />
+                <ScalarProperty Name="CONTRATO_OBSERVACION" ColumnName="CONTRATO_OBSERVACION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DEPARTAMENTOS">
+            <EntityTypeMapping TypeName="BDLUPITAModel.DEPARTAMENTOS">
+              <MappingFragment StoreEntitySet="DEPARTAMENTOS">
+                <ScalarProperty Name="DEPTO_ID" ColumnName="DEPTO_ID" />
+                <ScalarProperty Name="DEPTO_NOMBRE" ColumnName="DEPTO_NOMBRE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DEPARTAMENTOS_INSTITUCION">
+            <EntityTypeMapping TypeName="BDLUPITAModel.DEPARTAMENTOS_INSTITUCION">
+              <MappingFragment StoreEntitySet="DEPARTAMENTOS_INSTITUCION">
+                <ScalarProperty Name="DEPTO_INSTITUCION_ID" ColumnName="DEPTO_INSTITUCION_ID" />
+                <ScalarProperty Name="INSTITUCION_ID" ColumnName="INSTITUCION_ID" />
+                <ScalarProperty Name="DEPTO_INSTITUCION_NOMBRE" ColumnName="DEPTO_INSTITUCION_NOMBRE" />
+                <ScalarProperty Name="DEPTO_INSTITUCION_JEFE" ColumnName="DEPTO_INSTITUCION_JEFE" />
+                <ScalarProperty Name="DEPTO_INSTITUCION_TELEFONO" ColumnName="DEPTO_INSTITUCION_TELEFONO" />
+                <ScalarProperty Name="DEPTO_INSTITUCION_DESCRIPCION" ColumnName="DEPTO_INSTITUCION_DESCRIPCION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DETALLE_COMPRAS">
+            <EntityTypeMapping TypeName="BDLUPITAModel.DETALLE_COMPRAS">
+              <MappingFragment StoreEntitySet="DETALLE_COMPRAS">
+                <ScalarProperty Name="DET_COMPRA_ID" ColumnName="DET_COMPRA_ID" />
+                <ScalarProperty Name="COMPRA_ID" ColumnName="COMPRA_ID" />
+                <ScalarProperty Name="DET_COMPRA_CANTIDAD" ColumnName="DET_COMPRA_CANTIDAD" />
+                <ScalarProperty Name="DET_COMPRA_DESCRIPCION" ColumnName="DET_COMPRA_DESCRIPCION" />
+                <ScalarProperty Name="DET_COMPRA_PRECIO" ColumnName="DET_COMPRA_PRECIO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DETALLE_INSTALACION">
+            <EntityTypeMapping TypeName="BDLUPITAModel.DETALLE_INSTALACION">
+              <MappingFragment StoreEntitySet="DETALLE_INSTALACION">
+                <ScalarProperty Name="DET_INSTALACION_ID" ColumnName="DET_INSTALACION_ID" />
+                <ScalarProperty Name="INSTALACION_ID" ColumnName="INSTALACION_ID" />
+                <ScalarProperty Name="EQUIPO_ID" ColumnName="EQUIPO_ID" />
+                <ScalarProperty Name="DET_INSTALACION_ESTADO_INICIAL" ColumnName="DET_INSTALACION_ESTADO_INICIAL" />
+                <ScalarProperty Name="DET_INSTALACION_ESTADO_FINAL" ColumnName="DET_INSTALACION_ESTADO_FINAL" />
+                <ScalarProperty Name="DET_INSTALACION_DESCRIPCION" ColumnName="DET_INSTALACION_DESCRIPCION" />
+                <ScalarProperty Name="DET_INSTALACION_AUTORIZADO_POR" ColumnName="DET_INSTALACION_AUTORIZADO_POR" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DETALLE_MANTENIMIENTO">
+            <EntityTypeMapping TypeName="BDLUPITAModel.DETALLE_MANTENIMIENTO">
+              <MappingFragment StoreEntitySet="DETALLE_MANTENIMIENTO">
+                <ScalarProperty Name="DET_MANTO_ID" ColumnName="DET_MANTO_ID" />
+                <ScalarProperty Name="MANTO_ID" ColumnName="MANTO_ID" />
+                <ScalarProperty Name="EQUIPO_ID" ColumnName="EQUIPO_ID" />
+                <ScalarProperty Name="DET_MANTO_ESTADO_INICIAL" ColumnName="DET_MANTO_ESTADO_INICIAL" />
+                <ScalarProperty Name="DET_MANTO_ESTADO_FINAL" ColumnName="DET_MANTO_ESTADO_FINAL" />
+                <ScalarProperty Name="DET_MANTO_DESCRIPCION" ColumnName="DET_MANTO_DESCRIPCION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DETALLE_SOLICITUD">
+            <EntityTypeMapping TypeName="BDLUPITAModel.DETALLE_SOLICITUD">
+              <MappingFragment StoreEntitySet="DETALLE_SOLICITUD">
+                <ScalarProperty Name="DET_SOLICITUD_ID" ColumnName="DET_SOLICITUD_ID" />
+                <ScalarProperty Name="PROD_INSTITUCION_ID" ColumnName="PROD_INSTITUCION_ID" />
+                <ScalarProperty Name="SOLICITUD_ID" ColumnName="SOLICITUD_ID" />
+                <ScalarProperty Name="DET_SOLICITUD_CANTIDAD" ColumnName="DET_SOLICITUD_CANTIDAD" />
+                <ScalarProperty Name="DET_SOLICITUD_DESCRIPCION" ColumnName="DET_SOLICITUD_DESCRIPCION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DOCUMENTOS">
+            <EntityTypeMapping TypeName="BDLUPITAModel.DOCUMENTOS">
+              <MappingFragment StoreEntitySet="DOCUMENTOS">
+                <ScalarProperty Name="DOCU_ID" ColumnName="DOCU_ID" />
+                <ScalarProperty Name="EQUIPO_ID" ColumnName="EQUIPO_ID" />
+                <ScalarProperty Name="DOCU_NOMBRE" ColumnName="DOCU_NOMBRE" />
+                <ScalarProperty Name="DOCU_URL" ColumnName="DOCU_URL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EQUIPOS">
+            <EntityTypeMapping TypeName="BDLUPITAModel.EQUIPOS">
+              <MappingFragment StoreEntitySet="EQUIPOS">
+                <ScalarProperty Name="EQUIPO_ID" ColumnName="EQUIPO_ID" />
+                <ScalarProperty Name="COMPRA_ID" ColumnName="COMPRA_ID" />
+                <ScalarProperty Name="EQUIPO_NOMBRE" ColumnName="EQUIPO_NOMBRE" />
+                <ScalarProperty Name="EQUIPO_MARCA" ColumnName="EQUIPO_MARCA" />
+                <ScalarProperty Name="EQUIPO_MODELO" ColumnName="EQUIPO_MODELO" />
+                <ScalarProperty Name="EQUIPO_FECHA_COMPRA" ColumnName="EQUIPO_FECHA_COMPRA" />
+                <ScalarProperty Name="EQUIPO_ANIO_FABRICACION" ColumnName="EQUIPO_ANIO_FABRICACION" />
+                <ScalarProperty Name="EQUIPO_BTU" ColumnName="EQUIPO_BTU" />
+                <ScalarProperty Name="EQUIPO_POTENCIA" ColumnName="EQUIPO_POTENCIA" />
+                <ScalarProperty Name="EQUIPO_MANTENIMIENTO" ColumnName="EQUIPO_MANTENIMIENTO" />
+                <ScalarProperty Name="EQUIPO_ESTADO" ColumnName="EQUIPO_ESTADO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="INSTALACIONES">
+            <EntityTypeMapping TypeName="BDLUPITAModel.INSTALACIONES">
+              <MappingFragment StoreEntitySet="INSTALACIONES">
+                <ScalarProperty Name="INSTALACION_ID" ColumnName="INSTALACION_ID" />
+                <ScalarProperty Name="CONTRATO_ID" ColumnName="CONTRATO_ID" />
+                <ScalarProperty Name="PROVEEDOR_ID" ColumnName="PROVEEDOR_ID" />
+                <ScalarProperty Name="INSTALACION_INICIO" ColumnName="INSTALACION_INICIO" />
+                <ScalarProperty Name="INSTALACION_FINALIZACION" ColumnName="INSTALACION_FINALIZACION" />
+                <ScalarProperty Name="INSTALACION_RESPONSABLE" ColumnName="INSTALACION_RESPONSABLE" />
+                <ScalarProperty Name="INSTALACION_DESCRIPCION" ColumnName="INSTALACION_DESCRIPCION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="INSTITUCIONES">
+            <EntityTypeMapping TypeName="BDLUPITAModel.INSTITUCIONES">
+              <MappingFragment StoreEntitySet="INSTITUCIONES">
+                <ScalarProperty Name="INSTITUCION_ID" ColumnName="INSTITUCION_ID" />
+                <ScalarProperty Name="MUNICIPIO_ID" ColumnName="MUNICIPIO_ID" />
+                <ScalarProperty Name="INSTITUCION_NOMBRE" ColumnName="INSTITUCION_NOMBRE" />
+                <ScalarProperty Name="INSTITUCION_ENCARGADO" ColumnName="INSTITUCION_ENCARGADO" />
+                <ScalarProperty Name="INSTITUCION_TELEFONO" ColumnName="INSTITUCION_TELEFONO" />
+                <ScalarProperty Name="INSTITUCION_DIRECCION" ColumnName="INSTITUCION_DIRECCION" />
+                <ScalarProperty Name="INSTITUCION_DESCRIPCION" ColumnName="INSTITUCION_DESCRIPCION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LICITACIONES">
+            <EntityTypeMapping TypeName="BDLUPITAModel.LICITACIONES">
+              <MappingFragment StoreEntitySet="LICITACIONES">
+                <ScalarProperty Name="LICITACION_ID" ColumnName="LICITACION_ID" />
+                <ScalarProperty Name="SOLICITUD_ID" ColumnName="SOLICITUD_ID" />
+                <ScalarProperty Name="LICITACION_NUMERO" ColumnName="LICITACION_NUMERO" />
+                <ScalarProperty Name="LICITACION_ANIO" ColumnName="LICITACION_ANIO" />
+                <ScalarProperty Name="LICITACION_INICIO" ColumnName="LICITACION_INICIO" />
+                <ScalarProperty Name="LICITACION_FINALIZACION" ColumnName="LICITACION_FINALIZACION" />
+                <ScalarProperty Name="LICITACION_DESCRIPCION" ColumnName="LICITACION_DESCRIPCION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MANTENIMIENTOS">
+            <EntityTypeMapping TypeName="BDLUPITAModel.MANTENIMIENTOS">
+              <MappingFragment StoreEntitySet="MANTENIMIENTOS">
+                <ScalarProperty Name="MANTO_ID" ColumnName="MANTO_ID" />
+                <ScalarProperty Name="TIPO_MANTO_ID" ColumnName="TIPO_MANTO_ID" />
+                <ScalarProperty Name="CONTRATO_ID" ColumnName="CONTRATO_ID" />
+                <ScalarProperty Name="PROVEEDOR_ID" ColumnName="PROVEEDOR_ID" />
+                <ScalarProperty Name="MANTO_INICIO" ColumnName="MANTO_INICIO" />
+                <ScalarProperty Name="MANTO_FINALIZACION" ColumnName="MANTO_FINALIZACION" />
+                <ScalarProperty Name="MANTO_RESPONSABLE" ColumnName="MANTO_RESPONSABLE" />
+                <ScalarProperty Name="MANTO_DESCRIPCION" ColumnName="MANTO_DESCRIPCION" />
+                <ScalarProperty Name="MANTO_AUTORIZADO_POR" ColumnName="MANTO_AUTORIZADO_POR" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MUNICIPIOS">
+            <EntityTypeMapping TypeName="BDLUPITAModel.MUNICIPIOS">
+              <MappingFragment StoreEntitySet="MUNICIPIOS">
+                <ScalarProperty Name="MUNICIPIO_ID" ColumnName="MUNICIPIO_ID" />
+                <ScalarProperty Name="DEPTO_ID" ColumnName="DEPTO_ID" />
+                <ScalarProperty Name="MUNICIPIO_NOMBRE" ColumnName="MUNICIPIO_NOMBRE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OFERTAS">
+            <EntityTypeMapping TypeName="BDLUPITAModel.OFERTAS">
+              <MappingFragment StoreEntitySet="OFERTAS">
+                <ScalarProperty Name="OFERTA_ID" ColumnName="OFERTA_ID" />
+                <ScalarProperty Name="LICITACION_ID" ColumnName="LICITACION_ID" />
+                <ScalarProperty Name="PROVEEDOR_ID" ColumnName="PROVEEDOR_ID" />
+                <ScalarProperty Name="OFERTA_PRECIO" ColumnName="OFERTA_PRECIO" />
+                <ScalarProperty Name="OFERTA_DESCRIPCION" ColumnName="OFERTA_DESCRIPCION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PANTALLAS">
+            <EntityTypeMapping TypeName="BDLUPITAModel.PANTALLAS">
+              <MappingFragment StoreEntitySet="PANTALLAS">
+                <ScalarProperty Name="PANTALLA_ID" ColumnName="PANTALLA_ID" />
+                <ScalarProperty Name="PANTALLA_NOMBRE" ColumnName="PANTALLA_NOMBRE" />
+                <ScalarProperty Name="PANTALLA_DESCRIPCION" ColumnName="PANTALLA_DESCRIPCION" />
+                <ScalarProperty Name="PANTALLA_URL" ColumnName="PANTALLA_URL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PERMISOS">
+            <EntityTypeMapping TypeName="BDLUPITAModel.PERMISOS">
+              <MappingFragment StoreEntitySet="PERMISOS">
+                <ScalarProperty Name="PERMISO_ID" ColumnName="PERMISO_ID" />
+                <ScalarProperty Name="PANTALLA_ID" ColumnName="PANTALLA_ID" />
+                <ScalarProperty Name="ROL_ID" ColumnName="ROL_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRODUCTOS_INSTITUCION">
+            <EntityTypeMapping TypeName="BDLUPITAModel.PRODUCTOS_INSTITUCION">
+              <MappingFragment StoreEntitySet="PRODUCTOS_INSTITUCION">
+                <ScalarProperty Name="PROD_INSTITUCION_ID" ColumnName="PROD_INSTITUCION_ID" />
+                <ScalarProperty Name="INSTITUCION_ID" ColumnName="INSTITUCION_ID" />
+                <ScalarProperty Name="PROD_INSTITUCION_NOMBRE" ColumnName="PROD_INSTITUCION_NOMBRE" />
+                <ScalarProperty Name="PROD_INSTITUCION_DESCRIPCION" ColumnName="PROD_INSTITUCION_DESCRIPCION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRODUCTOS_PROVEEDOR">
+            <EntityTypeMapping TypeName="BDLUPITAModel.PRODUCTOS_PROVEEDOR">
+              <MappingFragment StoreEntitySet="PRODUCTOS_PROVEEDOR">
+                <ScalarProperty Name="PROD_PROVEEDOR_ID" ColumnName="PROD_PROVEEDOR_ID" />
+                <ScalarProperty Name="PROVEEDOR_ID" ColumnName="PROVEEDOR_ID" />
+                <ScalarProperty Name="PROD_PROVEEDOR_NOMBRE" ColumnName="PROD_PROVEEDOR_NOMBRE" />
+                <ScalarProperty Name="PROD_PROVEEDOR_MARCA" ColumnName="PROD_PROVEEDOR_MARCA" />
+                <ScalarProperty Name="PROD_PROVEEDOR_MODELO" ColumnName="PROD_PROVEEDOR_MODELO" />
+                <ScalarProperty Name="PROD_PROVEEDOR_ANIO" ColumnName="PROD_PROVEEDOR_ANIO" />
+                <ScalarProperty Name="PROD_PROVEEDOR_BTU" ColumnName="PROD_PROVEEDOR_BTU" />
+                <ScalarProperty Name="PROD_PROVEEDOR_POTENCIA" ColumnName="PROD_PROVEEDOR_POTENCIA" />
+                <ScalarProperty Name="PROD_PROVEEDOR_COLOR" ColumnName="PROD_PROVEEDOR_COLOR" />
+                <ScalarProperty Name="PROD_PROVEEDOR_EXISTENCIAS" ColumnName="PROD_PROVEEDOR_EXISTENCIAS" />
+                <ScalarProperty Name="PROD_PROVEEDOR_DESCRIPCION" ColumnName="PROD_PROVEEDOR_DESCRIPCION" />
+                <ScalarProperty Name="PROD_PROVEEDOR_VOLTAJE" ColumnName="PROD_PROVEEDOR_VOLTAJE" />
+                <ScalarProperty Name="PROD_PROVEEDOR_AREA" ColumnName="PROD_PROVEEDOR_AREA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PROVEEDORES">
+            <EntityTypeMapping TypeName="BDLUPITAModel.PROVEEDORES">
+              <MappingFragment StoreEntitySet="PROVEEDORES">
+                <ScalarProperty Name="PROVEEDOR_ID" ColumnName="PROVEEDOR_ID" />
+                <ScalarProperty Name="MUNICIPIO_ID" ColumnName="MUNICIPIO_ID" />
+                <ScalarProperty Name="PROVEEDOR_EMPRESA" ColumnName="PROVEEDOR_EMPRESA" />
+                <ScalarProperty Name="PROVEEDOR_CONTACTO" ColumnName="PROVEEDOR_CONTACTO" />
+                <ScalarProperty Name="PROVEEDOR_TELEFONO1" ColumnName="PROVEEDOR_TELEFONO1" />
+                <ScalarProperty Name="PROVEEDOR_TELEFONO2" ColumnName="PROVEEDOR_TELEFONO2" />
+                <ScalarProperty Name="PROVEEDOR_CORREO" ColumnName="PROVEEDOR_CORREO" />
+                <ScalarProperty Name="PROVEEDOR_NIT" ColumnName="PROVEEDOR_NIT" />
+                <ScalarProperty Name="PROVEEDOR_DESCRIPCION" ColumnName="PROVEEDOR_DESCRIPCION" />
+                <ScalarProperty Name="PROVEEDOR_DIRECCION" ColumnName="PROVEEDOR_DIRECCION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ROLES">
+            <EntityTypeMapping TypeName="BDLUPITAModel.ROLES">
+              <MappingFragment StoreEntitySet="ROLES">
+                <ScalarProperty Name="ROL_ID" ColumnName="ROL_ID" />
+                <ScalarProperty Name="ROL_NOMBRE" ColumnName="ROL_NOMBRE" />
+                <ScalarProperty Name="ROL_DESCRIPCION" ColumnName="ROL_DESCRIPCION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SOLICITUDES">
+            <EntityTypeMapping TypeName="BDLUPITAModel.SOLICITUDES">
+              <MappingFragment StoreEntitySet="SOLICITUDES">
+                <ScalarProperty Name="SOLICITUD_ID" ColumnName="SOLICITUD_ID" />
+                <ScalarProperty Name="TIPO_SOLICITUD_ID" ColumnName="TIPO_SOLICITUD_ID" />
+                <ScalarProperty Name="DEPTO_INSTITUCION_ID" ColumnName="DEPTO_INSTITUCION_ID" />
+                <ScalarProperty Name="SOLICITUD_CODIGO" ColumnName="SOLICITUD_CODIGO" />
+                <ScalarProperty Name="SOLICITUD_RESPONSABLE" ColumnName="SOLICITUD_RESPONSABLE" />
+                <ScalarProperty Name="SOLICITUD_FECHA" ColumnName="SOLICITUD_FECHA" />
+                <ScalarProperty Name="SOLICITUD_ESTADO" ColumnName="SOLICITUD_ESTADO" />
+                <ScalarProperty Name="SOLICITUD_OBSERVACION" ColumnName="SOLICITUD_OBSERVACION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="BDLUPITAModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TABLA_MENSAJE">
+            <EntityTypeMapping TypeName="BDLUPITAModel.TABLA_MENSAJE">
+              <MappingFragment StoreEntitySet="TABLA_MENSAJE">
+                <ScalarProperty Name="ID_MENSAJE" ColumnName="ID_MENSAJE" />
+                <ScalarProperty Name="MENSAJE" ColumnName="MENSAJE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TIPO_MANTENIMIENTOS">
+            <EntityTypeMapping TypeName="BDLUPITAModel.TIPO_MANTENIMIENTOS">
+              <MappingFragment StoreEntitySet="TIPO_MANTENIMIENTOS">
+                <ScalarProperty Name="TIPO_MANTO_ID" ColumnName="TIPO_MANTO_ID" />
+                <ScalarProperty Name="TIPO_MANTO_NOMBRE" ColumnName="TIPO_MANTO_NOMBRE" />
+                <ScalarProperty Name="TIPO_MANTO_DESCRIPCION" ColumnName="TIPO_MANTO_DESCRIPCION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TIPO_SOLICITUDES">
+            <EntityTypeMapping TypeName="BDLUPITAModel.TIPO_SOLICITUDES">
+              <MappingFragment StoreEntitySet="TIPO_SOLICITUDES">
+                <ScalarProperty Name="TIPO_SOLICITUD_ID" ColumnName="TIPO_SOLICITUD_ID" />
+                <ScalarProperty Name="TIPO_SOLICITUD_NOMBRE" ColumnName="TIPO_SOLICITUD_NOMBRE" />
+                <ScalarProperty Name="TIPO_SOLICITUD_DESCRIPCION" ColumnName="TIPO_SOLICITUD_DESCRIPCION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USUARIOS">
+            <EntityTypeMapping TypeName="BDLUPITAModel.USUARIOS">
+              <MappingFragment StoreEntitySet="USUARIOS">
+                <ScalarProperty Name="USUARIO_USUARIO" ColumnName="USUARIO_USUARIO" />
+                <ScalarProperty Name="PROVEEDOR_ID" ColumnName="PROVEEDOR_ID" />
+                <ScalarProperty Name="INSTITUCION_ID" ColumnName="INSTITUCION_ID" />
+                <ScalarProperty Name="ROL_ID" ColumnName="ROL_ID" />
+                <ScalarProperty Name="USUARIO_NOMBRE" ColumnName="USUARIO_NOMBRE" />
+                <ScalarProperty Name="USUARIO_CORREO" ColumnName="USUARIO_CORREO" />
+                <ScalarProperty Name="USUARIO_TELEFONO" ColumnName="USUARIO_TELEFONO" />
+                <ScalarProperty Name="USUARIO_CONTRASENIA" ColumnName="USUARIO_CONTRASENIA" />
+                <ScalarProperty Name="USUARIO_ESTADO" ColumnName="USUARIO_ESTADO" />
+                <ScalarProperty Name="USUARIO_BLOQUEADO" ColumnName="USUARIO_BLOQUEADO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="CONDICIONES" TypeName="BDLUPITAModel.CONDICIONES" StoreEntitySet="CONDICIONES">
+            <EndProperty Name="INSTITUCIONES">
+              <ScalarProperty Name="INSTITUCION_ID" ColumnName="INSTITUCION_ID" />
+            </EndProperty>
+            <EndProperty Name="PROVEEDORES">
+              <ScalarProperty Name="PROVEEDOR_ID" ColumnName="PROVEEDOR_ID" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

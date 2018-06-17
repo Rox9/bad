@@ -1,0 +1,66 @@
+﻿@model GOES.LICITACIONES
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>LICITACIONES</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.LICITACION_NUMERO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LICITACION_NUMERO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LICITACION_ANIO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LICITACION_ANIO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LICITACION_INICIO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LICITACION_INICIO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LICITACION_FINALIZACION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LICITACION_FINALIZACION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LICITACION_DESCRIPCION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LICITACION_DESCRIPCION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SOLICITUDES.SOLICITUD_RESPONSABLE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SOLICITUDES.SOLICITUD_RESPONSABLE)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.LICITACION_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

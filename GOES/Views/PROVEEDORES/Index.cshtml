@@ -1,0 +1,83 @@
+﻿@model IEnumerable<GOES.PROVEEDORES>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("NUEVO PROVEEDOR", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PROVEEDOR_EMPRESA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PROVEEDOR_CONTACTO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PROVEEDOR_TELEFONO1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PROVEEDOR_TELEFONO2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PROVEEDOR_CORREO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PROVEEDOR_NIT)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PROVEEDOR_DESCRIPCION)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PROVEEDOR_DIRECCION)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MUNICIPIOS.MUNICIPIO_NOMBRE)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PROVEEDOR_EMPRESA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PROVEEDOR_CONTACTO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PROVEEDOR_TELEFONO1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PROVEEDOR_TELEFONO2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PROVEEDOR_CORREO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PROVEEDOR_NIT)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PROVEEDOR_DESCRIPCION)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PROVEEDOR_DIRECCION)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MUNICIPIOS.MUNICIPIO_NOMBRE)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.PROVEEDOR_ID }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.PROVEEDOR_ID }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.PROVEEDOR_ID })
+        </td>
+    </tr>
+}
+
+</table>
+
+

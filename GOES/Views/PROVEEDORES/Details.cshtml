@@ -1,0 +1,90 @@
+﻿@model GOES.PROVEEDORES
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PROVEEDORES</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PROVEEDOR_EMPRESA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PROVEEDOR_EMPRESA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PROVEEDOR_CONTACTO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PROVEEDOR_CONTACTO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PROVEEDOR_TELEFONO1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PROVEEDOR_TELEFONO1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PROVEEDOR_TELEFONO2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PROVEEDOR_TELEFONO2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PROVEEDOR_CORREO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PROVEEDOR_CORREO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PROVEEDOR_NIT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PROVEEDOR_NIT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PROVEEDOR_DESCRIPCION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PROVEEDOR_DESCRIPCION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PROVEEDOR_DIRECCION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PROVEEDOR_DIRECCION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MUNICIPIOS.MUNICIPIO_NOMBRE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MUNICIPIOS.MUNICIPIO_NOMBRE)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PROVEEDOR_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
