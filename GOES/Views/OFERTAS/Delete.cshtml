@@ -1,12 +1,12 @@
 ﻿@model GOES.OFERTAS
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Eliminar";
 }
 
-<h2>Delete</h2>
+<h2>Eliminar</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>¿Esta seguro que quiere eliminarla?</h3>
 <div>
     <h4>OFERTAS</h4>
     <hr />
@@ -28,7 +28,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.LICITACIONES.LICITACION_DESCRIPCION)
+            @Html.DisplayName("DESCRIPCION DE LICITACION")
         </dt>
 
         <dd>
@@ -36,7 +36,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.PROVEEDORES.PROVEEDOR_EMPRESA)
+            @Html.DisplayName("NOMBRE DE EMPRESA")
         </dt>
 
         <dd>
@@ -49,8 +49,8 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="ELIMINAR" class="btn btn-default" /> |
+            @Html.ActionLink("REGRESAR", "Index")
         </div>
     }
 </div>

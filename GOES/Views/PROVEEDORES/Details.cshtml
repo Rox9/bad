@@ -1,10 +1,10 @@
 ﻿@model GOES.PROVEEDORES
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalles";
 }
 
-<h2>Details</h2>
+<h2>Detalles</h2>
 
 <div>
     <h4>PROVEEDORES</h4>
@@ -75,7 +75,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.MUNICIPIOS.MUNICIPIO_NOMBRE)
+            @Html.DisplayName("MUNICIPIO")
         </dt>
 
         <dd>
@@ -85,6 +85,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.PROVEEDOR_ID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("EDITAR", "Edit", new { id = Model.PROVEEDOR_ID }) |
+    @Html.ActionLink("REGRESAR", "Index")
 </p>

@@ -11,7 +11,9 @@ namespace GOES
 {
     using System;
     using System.Collections.Generic;
-    
+
+    using System.ComponentModel.DataAnnotations;
+            
     public partial class LICITACIONES
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,17 +21,25 @@ namespace GOES
         {
             this.OFERTAS = new HashSet<OFERTAS>();
         }
-    
+
+        [Display(Name = "ID LICITACION")]
         public int LICITACION_ID { get; set; }
+        [Display(Name = "ID SOLICITUD")]
         public int SOLICITUD_ID { get; set; }
+        [Display(Name = "NUMERO DE LICITACION")]
         public int LICITACION_NUMERO { get; set; }
+        [Display(Name = "AÑO")]
         public int LICITACION_ANIO { get; set; }
+        [Display(Name = "INICIO")]
         public System.DateTime LICITACION_INICIO { get; set; }
+        [Display(Name = "FIN")]
         public System.DateTime LICITACION_FINALIZACION { get; set; }
+        [Display(Name = "DESCRIPCION")]
         public string LICITACION_DESCRIPCION { get; set; }
-    
+        [Display(Name = "SOLICITUDES")]
         public virtual SOLICITUDES SOLICITUDES { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        [Display(Name = "OFERTAS")]
         public virtual ICollection<OFERTAS> OFERTAS { get; set; }
     }
 }

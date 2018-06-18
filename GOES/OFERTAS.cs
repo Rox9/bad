@@ -11,16 +11,24 @@ namespace GOES
 {
     using System;
     using System.Collections.Generic;
-    
+
+    using System.ComponentModel.DataAnnotations;
     public partial class OFERTAS
     {
+        [Display(Name = "ID OFERTA")]
         public int OFERTA_ID { get; set; }
+        [Display(Name = "ID LICITACION")]
         public int LICITACION_ID { get; set; }
+        [Display(Name = "ID PROVEEDOR")]
         public int PROVEEDOR_ID { get; set; }
+        [Display(Name = "PRECIO")]
         public float OFERTA_PRECIO { get; set; }
+        [Display(Name = "DESCRIPCION")]
         public string OFERTA_DESCRIPCION { get; set; }
-    
+
+        [Display(Name = "LICITACIONES")]
         public virtual LICITACIONES LICITACIONES { get; set; }
+        [Display(Name = "PROVEEDORES")]
         public virtual PROVEEDORES PROVEEDORES { get; set; }
     }
 }

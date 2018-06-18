@@ -11,6 +11,8 @@ namespace GOES
 {
     using System;
     using System.Collections.Generic;
+
+    using System.ComponentModel.DataAnnotations;
     
     public partial class PROVEEDORES
     {
@@ -25,16 +27,26 @@ namespace GOES
             this.USUARIOS = new HashSet<USUARIOS>();
             this.INSTITUCIONES = new HashSet<INSTITUCIONES>();
         }
-    
+
+        [Display(Name = "ID PROVEEDOR")]
         public int PROVEEDOR_ID { get; set; }
+        [Display(Name = "MUNICIPIO")]
         public int MUNICIPIO_ID { get; set; }
+        [Display(Name = "NOMBRE DE EMPRESA")]
         public string PROVEEDOR_EMPRESA { get; set; }
+        [Display(Name = "CONTACTO")]
         public string PROVEEDOR_CONTACTO { get; set; }
+        [Display(Name = "TELEFONO 1")]
         public string PROVEEDOR_TELEFONO1 { get; set; }
+        [Display(Name = "TELEFONO 2")]
         public string PROVEEDOR_TELEFONO2 { get; set; }
+        [Display(Name = "CORREO")]
         public string PROVEEDOR_CORREO { get; set; }
+        [Display(Name = "NIT")]
         public string PROVEEDOR_NIT { get; set; }
+        [Display(Name = "DESCRIPCION")]
         public string PROVEEDOR_DESCRIPCION { get; set; }
+        [Display(Name = "DIRECCION")]
         public string PROVEEDOR_DIRECCION { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

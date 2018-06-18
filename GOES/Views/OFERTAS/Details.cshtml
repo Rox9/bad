@@ -1,10 +1,10 @@
 ﻿@model GOES.OFERTAS
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalles";
 }
 
-<h2>Details</h2>
+<h2>Detalles</h2>
 
 <div>
     <h4>OFERTAS</h4>
@@ -27,7 +27,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.LICITACIONES.LICITACION_DESCRIPCION)
+            @Html.DisplayName("DESCRIPCION DE LICITACION")
         </dt>
 
         <dd>
@@ -35,7 +35,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.PROVEEDORES.PROVEEDOR_EMPRESA)
+            @Html.DisplayName("NOMBRE DE EMPRESA")
         </dt>
 
         <dd>
@@ -45,6 +45,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.OFERTA_ID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("EDITAR", "Edit", new { id = Model.OFERTA_ID }) |
+    @Html.ActionLink("REGRESAR", "Index")
 </p>
